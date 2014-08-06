@@ -1,0 +1,10 @@
+.report{
+
+}
+.report .musor{
+	margin: 5px;
+}
+.report .musor span{
+	margin-left: 5px;
+	margin-bottom: 2px;
+}

@@ -1,0 +1,18 @@
+.weather{
+	position: absolute;
+	z-index: 3;
+	width: 148px;
+	border: 2px ridge rgb(1, 167, 173);
+	box-shadow: rgb(0, 0, 0) 0px 0px 10px, rgb(255, 255, 255) 2px 2px 5px;
+	top: 32px;
+	right: 10px;
+}
+.weather .content{
+	height: 479px;
+	overflow: hidden;
+	position: relative;
+}
+.weather .content img{
+	right: 0;
+	position: absolute;
+}

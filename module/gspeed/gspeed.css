@@ -1,0 +1,120 @@
+.gspeed{
+	width: 300px;
+	position: absolute;
+	bottom:1px;
+	z-index: 3;
+	height: 200px;
+	border: 2px ridge rgb(1, 167, 173);
+	box-shadow: rgb(0, 0, 0) 0px 0px 10px, rgb(255, 255, 255) 2px 2px 5px;
+	left: 50%;
+	margin-left: -152px;
+	background: rgba(255,255,255,0.3) ;
+	display: none;
+	opacity: 0;
+	overflow: hidden;
+}
+.gspeed .from-bar{
+	width: 10px;
+	height: 30px;
+	background: red;
+	display: inline-block;
+	position: absolute;
+}
+.gspeed .to-bar{
+	width: 10px;
+	height: 30px;
+	background: red;
+	right: 0px;
+	display: inline-block;
+	position: absolute;
+}
+
+.gspeed .content{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	overflow: hidden;
+
+}
+.gspeed .from-curtains{
+	position: absolute;
+	display: inline-block;
+	right: 5px;
+	width: 2000px;
+	height: 180px;
+	background: rgba(0,0,0,0.3);
+}
+.gspeed .to-curtains{
+	position: absolute;
+	display: inline-block;
+	left: 5px;
+	width: 2000px;
+	height: 180px;
+	background: rgba(0,0,0,0.3);
+}
+
+.gspeed .curtains-t{
+	position: absolute;
+	display: inline-block;
+	right: -5px;
+	width: 10px;
+	height: 30px;
+	background: red;
+}
+
+.gspeed .to-curtains-t{
+	position: absolute;
+	display: inline-block;
+	left: -5px;
+	width: 10px;
+	height: 30px;
+	background: red;
+}
+
+.gspeed .scale{
+	width: 100%;
+	height: 30px;
+	background: -moz-linear-gradient(top,  rgba(155,179,198,1) 0%, rgba(159,216,239,0.59) 41%, rgba(227,245,252,0) 99%, rgba(228,245,252,0) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(155,179,198,1)), color-stop(41%,rgba(159,216,239,0.59)), color-stop(99%,rgba(227,245,252,0)), color-stop(100%,rgba(228,245,252,0))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(155,179,198,1) 0%,rgba(159,216,239,0.59) 41%,rgba(227,245,252,0) 99%,rgba(228,245,252,0) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(155,179,198,1) 0%,rgba(159,216,239,0.59) 41%,rgba(227,245,252,0) 99%,rgba(228,245,252,0) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(155,179,198,1) 0%,rgba(159,216,239,0.59) 41%,rgba(227,245,252,0) 99%,rgba(228,245,252,0) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(155,179,198,1) 0%,rgba(159,216,239,0.59) 41%,rgba(227,245,252,0) 99%,rgba(228,245,252,0) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9bb3c6', endColorstr='#00e4f5fc',GradientType=0 ); /* IE6-9 */
+
+}
+.gspeed .graph{
+	position: absolute;
+	/*background-color: green;*/
+	width: 100%;
+	height: 100%
+}
+.gspeed .graph canvas{
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.gspeed .text-from{
+	margin-left: 10px;
+
+}
+.gspeed .text-to{
+	margin-right: 13px;
+	float: right;
+}
+.gspeed .layerDiv{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+.gspeed .divPoint{
+	position: absolute;
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	background-color: rgb(255, 255, 255);
+	border-radius: 5px;
+	border: 1px solid black;
+}

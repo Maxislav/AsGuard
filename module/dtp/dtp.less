@@ -1,0 +1,118 @@
+.sprite-dtp(){
+  .sprite-dtp-manage{
+  width: 100%;
+  .rt{
+    display: inline-block;
+    width: 16px;
+    margin: 0 0px 0 5px;
+  }
+  td{
+    padding: 2px;
+    border-bottom: 1px solid #d5d8e5;
+    &:first-child{
+      width: 20%;
+    }
+  }
+  td.radio>div{
+    display: inline-block;
+    margin: 0 2px;
+    width: 60px;
+    &>div{
+      text-align: center;
+    }
+  }
+  td.gai>div{
+    display: inline-block;
+    width: 84px;
+    &>div{
+      display: inline-block;
+
+    }
+    &>div.y{
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 6px;
+      border: 1px solid darkslategray;
+      background: #34ff00;
+    }
+    input{
+      margin-top: 2px;
+      margin-left: 5px;
+    }
+  }
+  textarea{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    width: 100%;
+    border: 1px solid #808080;
+  }
+  input{
+    border: 1px solid #808080;
+    outline: none;
+  }
+  }
+}
+
+
+.dtp-manage{
+  padding: 5px;
+  position: absolute;
+  left: -10px;
+
+  top: 0;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+  margin: 2px;
+  .sprite-dtp;
+
+}
+.spite-button>div{
+  display: inline-block;
+  width: 100px;
+  margin: 2px 5px;
+}
+.dtp-manage.add{
+  position: relative;
+  left:0;
+  top:0;
+  margin: 0;
+
+  width: inherit;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  .sprite-dtp;
+  .spite-button>div{
+    display: inline-block;
+    width: 100px;
+    margin: 2px 5px;
+  }
+//  .sprite-dtp-manage();
+}
+
+.dtp-container{
+  .status{
+    clear: both;
+    &>div{
+     display: inline-block;
+      margin: 1px 3px;
+      width: 20px;
+      height: 20px;
+      
+    }
+    .gai{
+      background: url("module/dtp/img/gai.jpg");
+      background-size: 100% 100%;
+    }
+    .ambulance{
+      background: url("module/dtp/img/ambulance.jpg");
+      background-size: 100% 100%;
+    }
+    .mh{
+      background: url("module/dtp/img/mh.png");
+      background-size: 100% 100%;
+    }
+  }
+}

@@ -1,0 +1,223 @@
+<html>
+<head>
+    <link rel="shortcut icon" href="images/icon.png" rel="shortcut icon" href="images/icon.png"/>
+    <title>Atlas</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="MobileOptimized"  />
+	<meta name="PalmComputingPlatform" content="true" />
+
+
+	<link rel="stylesheet" href="css/main.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <script src="js/rain.js" type="text/javascript">//спеэфект "дождь"</script>
+    <script>
+
+    </script>
+
+
+</head>
+<script>
+    if(document.cookie){
+        var cc={};
+        for(var i=0; i<  document.cookie.split(/;\s/).length; i++){
+            console.log(document.cookie.split(/;\s/)[i]);
+            cc[document.cookie.split(/;\s/)[i].split('=')[0]]  =document.cookie.split(/;\s/)[i].split('=')[1]
+        }
+        if(cc['key'] && cc['key']!='null' ){
+            window.location.href = 'login.php'
+        }
+    }
+</script>
+
+
+
+
+<body id="index" onload="app.init()">
+
+
+<canvas id="myCanvas" style="position: absolute;
+    z-index: -1;
+    top: 0px;
+    left: 0px;" width="" height="">
+    Ваш браузер не поддерживает Canvas.
+</canvas>
+
+<div align="center" id="index1" >
+
+
+    <p style="margin: 10px"><img src="images/mainlogo.png"></p>
+
+    <div style="z-index:5; margin-top: 40px">
+
+        <!--
+         <form  action="/login.php" method="post" id="form"> -->
+        <div id="form">
+
+
+
+            <!--**** save_user.php - это адрес обработчика.  То есть, после нажатия на кнопку "Зарегистрироваться", данные из полей  отправятся на страничку save_user.php методом "post" ***** -->
+
+            <label>Login<br></label>
+            <input name="login" type="text" maxlength="15" style="whidth: 160px" >
+
+            <!--**** В текстовое поле (name="login" type="text") пользователь вводит свой логин ***** -->
+            <br>
+            <label>Pass<br></label>
+            <input name="password" type="password" maxlength="15" style="whidth: 160px" >
+            <br>
+            <!--<input id="brr" name="brr" type="password" maxlength="15" style="whidth: 160px; display:">-->
+
+
+
+
+            <!--**** В поле для паролей (name="password" type="password") пользователь вводит свой пароль ***** -->
+            <br>
+
+            <div id ="submit" class="button" style="width: 100px; margin: 0 auto">Вход</div>
+            <!--  <input type="submit" name="submit" alt="Enter" value='Enter' class='button' align='center' style=""id='submit'> -->
+            <br>
+
+        </div>
+        <!--**** Кнопочка (type="submit") отправляет данные на страничку save_user.php ***** -->
+        <!-- </form>-->
+
+    </div>
+    <div style=" font-size: 16px;">
+        <a href="registration.html">Регистрация</a>
+    </div>
+    <div style="margin: 10px; font-size: 16px;">
+        <a href="instruction.html">Help</a>
+    </div>
+    <!--
+<div style="margin: 10px; font-size: 10px;" >
+Help: <a href="skype:kardinal.maxim?chat">Skype</a>
+</div>
+-->
+
+
+</div>
+
+<script>
+
+    var app = {
+        el:null,
+        init:function () {
+            var scope = this;
+            this.el = {
+                login:document.getElementById('form').getElementsByTagName('input')[0],
+                pass:document.getElementById('form').getElementsByTagName('input')[1],
+                submit: window['submit']
+            }
+            this.el.submit.onclick =function(){
+                scope.tryEnter();
+            }
+            window.onkeypress =  zx;
+            function zx(e){
+                var charCode = (typeof e.which == "number") ? e.which : e.keyCode
+                if(charCode==13){
+                    scope.tryEnter();
+                }
+            }
+        },
+        tryEnter:function(){
+            var xhr = this.getXmlHttp();
+
+            var  login = this.el.login.value,pass = this.el.pass.value ;
+
+
+            xhr.open("POST", "tryEnter.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange=function(){
+                xhr.responseText;
+                if (xhr.readyState==4 && xhr.status==200){
+
+                    console.log(xhr.responseText) ;
+				//	Location reload();
+					location.reload();
+                    // window.location.href = './login.php'
+                  //  var u = window.location.href + 'login.php/'
+                  //  window.location.href = u;
+
+                }else if(xhr.readyState==4 && xhr.status==404){
+                    // window.location.href = xhr.responseText;
+                }else if(xhr.readyState==4 && xhr.status==500){
+                    // window.location.href = xhr.responseText;
+                }
+            }
+            xhr.send('login='+login+'&pass='+pass);
+            return false;
+        },
+        getXmlHttp: function(){
+            try {
+                xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e) {
+                try {
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (E) {
+                    xmlhttp = false;
+                }
+            }
+            if (!xmlhttp && typeof XMLHttpRequest != 'undefined') {
+                xmlhttp = new XMLHttpRequest();
+            }
+            return xmlhttp;
+        }
+    }
+</script>
+
+
+<script>
+    var brr = '<?php echo $brr ?>';
+    // document.getElementById("brr").value = brr;
+    if (brr !== "Android") {// если браузер не андроид
+        var width = document.body.clientWidth; // ширина
+        var height = document.body.clientHeight; // высота
+        document.getElementById("myCanvas").width = width;
+        document.getElementById("myCanvas").height = height;
+        //alert (width+":"+height);
+
+        var canvas = document.getElementById("myCanvas");
+        canvas.style.zIndex = '-10';
+        var c = canvas.getContext("2d");
+        var img = new Image();   // Создать новый объект Image
+        var pix = [];
+
+        //////////////
+
+
+        img.onload = function () {
+            c.drawImage(img, 0, 0, width, height);
+
+
+            var imgd = c.getImageData(0, 0, width, height); // область для с'ема массива пикселей
+            pix = imgd.data; /// массив пикселей фона
+            c.fillStyle = "rgba(0,0,0, 0.8)";
+            c.fillRect(0, 0, width, height);
+        }
+        img.src = 'images/index_map.jpg'; // Установить путь к источнику
+
+        var r = 255;
+        var b = 255;
+        var g = 255;
+
+
+        function rain() {
+            for (var i = 0; i < 50; i++) {
+                s = new dot();
+                s.s();
+            }
+
+        }
+
+        rain();
+
+    }
+</script>
+
+
+</body>
+
+
+</html>

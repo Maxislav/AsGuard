@@ -1,0 +1,6 @@
+RewriteEngine Off
+AddDefaultCharset Off
+<Files *.dat>
+order allow,deny 
+deny from all 
+</Files>

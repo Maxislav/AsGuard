@@ -1,0 +1,24 @@
+<div class="border-bottom hover" style="padding: 5px 0">
+    <div class="container-karma">
+        <div class="karmaup" onclick="region.karmaUp(${JSON.stringify(this)},this)"></div>
+        <div style="color: #62b36c" name="karmaup" >
+            ${karmaup}
+        </div>
+        <div class="karmadown" onclick="region.karmaDown(${JSON.stringify(this)},this)">
+
+        </div>
+        <div style="color: #bd5155" name="karmadown">
+            ${karmadown}
+        </div>
+
+    </div>
+
+
+    <div class="bold inline-block" style="text-decoration: underline"> ${name}</div>
+    {{if (help)}}
+    <div class="inline-block" style="font-weight: normal"> ${help}</div>
+    {{/if}}
+    <div rows="1" class="inline-block"> ${contact}</div>
+    <div class="" style="font-weight: normal"> ${option}</div>
+
+</div>

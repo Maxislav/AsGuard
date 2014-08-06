@@ -1,0 +1,70 @@
+
+	<table  style="width: 100%;" class='title'>
+		<tr>
+			<td align='center'><p style="margin-right: -20px">Personal</p> </td><td class="cancel" width='20' ></td>
+		</tr>
+
+
+	</table>
+	<div style="margin-right: 2px;">
+		<textarea id="perconal_comment" rows="4" style="width: 100%; border: 1px solid #ff8a00; background: url(images/bg.png);"></textarea>
+	</div>
+	<div  class='title'>
+
+		<table style="width: 100%; font-size: 11px;border-spacing: 2px;"  >
+
+			<tr>
+				<td style="width: 30px; font-size: 12px">N</td>
+				<td style="width: 140px;font-size: 12px">User</td>
+				<td class="check">Email</td>
+				<td class="check">phone 1</td>
+				<td class="check">phone 2</td>
+
+			</tr>
+
+			<tr>
+
+				<td style="width: 30px"></td>
+				<td style="width: 140px"></td>
+				<td class="check button2"  onclick="personal.clear('is_alert')" >-</td>
+				<td class="check button2" onclick="personal.clear('is_alert1')" >-</td>
+				<td class="check button2" onclick="personal.clear('is_alert2')" >-</td>
+
+			</tr>
+			<tr>
+				<td style="width: 140px; text-align: center" colspan="2" class="button2" onclick="personal.parseData()">Default</td>
+				<td class="button2" colspan="3" style="text-align: center" onclick="personal.clear('oll')">Clear all</td>
+
+			</tr>
+		</table>
+
+	</div>
+
+	<div style="padding: 2px 0 5px 5px; border-radius: 2px ">
+
+
+		<div id="scrollbar4" style="z-index: 2; ; margin: 0px auto; height: 400px">
+			<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+			<div class="viewport">
+				<div class="overview">
+					<div id="table_personal" style="width: 100%">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+	<table width='100%' style="">
+		<tr>
+
+			<td align="center"  class="button" onclick="personal.alertMsg()" style="  width: 50%; height: 25px;" >Send</td>
+			<!-- <td align="center"  class="button" onclick="loadPersonal.save()" style="  width: 30%; height: 25px;" >Save</td>-->
+			<td align="center"   class="button close" style="   height: 25px;"  >Cancel</td>
+		</tr>
+	</table>

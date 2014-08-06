@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <link rel="shortcut icon" href="images/icon.png" />
+        <title>Atlas</title>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height,minimum-scale=1.0, maximum-scale=4.0">
+        <meta name="MobileOptimized"  />
+        <meta name="PalmComputingPlatform" content="true" />
+        <!--<link rel="stylesheet" href="dist/leaflet.css" />-->
+
+        <link rel="stylesheet" href="build/css.css" />
+
+
+
+        <!--<script data-main="js/init.js" src="lib/requirejs/require.js"></script>-->
+
+
+
+
+<!--собранные фалы-->
+		<script type="text/javascript" src="build/scripts.min.js"></script>
+
+
+       <!-- <script src="dist/leaflet.js"></script>
+		<script src="js/geoMarker.js"></script>
+        <script src="lib/requirejs/require.js"></script>
+        <script src="js/dateTime.js"></script>
+		<script type="text/javascript" src="lib/jquery/jquery-ui-1.10.4.custom/js/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="lib/jquery/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.js"></script>
+        <script type="text/javascript" src="js/jquery-tpml.js"></script>
+        <script type="text/javascript" src="js/EventBlock.js"></script>
+        <script type="text/javascript" src="js/jquery.tinyscrollbar.js"></script>
+	    <script type="text/javascript" src="js/jquery-draggable.js"></script>
+        <script src="calendar_ru.js" type="text/javascript"></script>
+		<script type="text/javascript" src="js/app.js" ></script>
+		<script src="calcTime.js" type="text/javascript"></script> &lt;!&ndash; класс расчета времени и даты &ndash;&gt;
+		<script src="send.js" type="text/javascript"></script>  &lt;!&ndash; отправка емайла &ndash;&gt;
+		<script src="vhide.js" type="text/javascript"></script>
+		<script src="js/registerdevise.js" type="text/javascript"></script>
+		<script src="clock.js"></script>  &lt;!&ndash; часы текущее время &ndash;&gt;
+		<script src="js/geocoding.js"></script>-->
+
+
+
+		<!--<script src="azimut_ico.js" type="text/javascript"></script>-->
+		<!--<script type="text/javascript" src="js/DtpOnMap.js" ></script>-->
+
+		<!-- <script type="text/javascript" src="js/CanvasMarker.js" ></script>-->
+		<!-- <script type="text/javascript" src="js/GeoCoder.js" ></script>-->
+		<!--	<script src="graphSpeed.js" type="text/javascript">  </script> -->
+		<!-- класс рисования графика скорости -->
+		<!--  <script src="js/yandex.js" type="text/javascript"></script> -->
+		<!-- <script src="js/leaflet.polylineDecorator.js"></script>-->
+		<!--<script src="layer/Yandex.js"></script>-->
+
+
+		<script type="text/javascript">
+             //todo document ready
+             var brr = '<?php echo $brr ?>';
+             var pass="<?php echo  $pass; ?>";
+             var scrollbar1, dtpscrollbar;
+              var dtp = null;
+             var dmarker
+         $(document).ready(function(){
+
+              dmarker = L.icon({
+                         iconUrl: 'images/default_marker.png',
+                         iconSize: [24, 40],
+                         iconAnchor: [12, 40],
+                 })
+
+			 if (brr != 'Android') { //если браузер не андроид
+				 $("#div_report").draggable();
+				 $("#div_setting").draggable({ handle: ".title" });
+				 scrollbar1 = $('#scrollbar1').tinyscrollbar({invertscroll: true, wheel: 20});
+			 } else {
+				 scrollbar1 = $('#scrollbar1').tinyscrollbar({invertscroll: true, wheel: 1});
+			 }
+			 require.config({
+				 waitSeconds: 60,
+				 baseUrl: '',
+				 paths: {
+					 text: 'lib/requirejs/text'
+				 }
+			 });
+
+
+
+			 app.init();
+			 document.getElementById("geosearch_v").onclick = function () {
+				 geocoding.vhide();
+			 }
+			 $('#statistics').click(function () {
+				 vhide(this);
+				 $('#form_statistics').submit();
+			 })
+             if(options.event == "true"){
+                 app.loadModule('dtp');
+             }
+
+			 $.ajax({
+				 type: 'POST',
+				 url: 'refactor.php',
+				 data: 'pass=' + pass + '&login=' + login,
+				 success: function (data) {
+					 console.log(data);
+				 },
+				 error: function (xhr, status, error) {
+					 console.log('err refactor');
+				 }
+
+			 });
+
+
+		 });
+		</script>
+    </head>
+    <body onload="activSite(); ">
+
+
+<!-- todo отображение дтп на карте за период -->
+         <div class="border-ridge bg" id="selectPeriodDtp" style="
+             top: 32px;
+             left: 50%;
+             width: 210px;
+             position: absolute;
+
+             z-index: 2;
+             visibility: hidden;
+
+             box-shadow: 0px 0px 10px #000, 2px 2px 5px #fff;
+             margin-left: -105px;
+             text-shadow: none;">
+
+             <table cellpadding="0" cellspacing="0" style="width: 100%" class='title'>
+                 <tr>
+                     <td align='center'>Event / События  </td><td class="cancel" width='20' onclick="vhide({id:'statisticsOnMap', element: 'mh'})"></td>
+                 </tr>
+             </table>
+             <p align="center">From date / От даты</p>
+
+             <form action="" style="z-index: 3" >
+
+                 <p style="margin-top:0px; z-index: 3" align="center"  ><input id="dtp_from" style="z-index: 3" type="text" value="dd-mm-yy" name="mydata" onfocus="this.select();lcs(this)" onclick="event.cancelBubble=true;this.select();lcs(this)" >	</p>
+
+             </form>
+             <p align="center">To date / До даты</p>
+
+             <form action="" style="z-index: 3" >
+
+                 <p style="margin-top:0px; z-index: 3"  align="center" ><input id="dtp_to" style="z-index: 3" type="text" value="dd-mm-yy" name="mydata" onfocus="this.select();lcs(this)" onclick="event.cancelBubble=true;this.select();lcs(this)" >	</p>
+
+             </form>
+
+             <table cellpadding="0" cellspacing="0" style="width: 100%; margin-top: 5px" class='border_top'>
+                 <tr>
+                     <td  class ='title'><input type="checkbox" name="optDtp" id="checkDtp" > ДТП </td>
+
+                 </tr>
+                 <tr>
+                     <td  class ='title'><input type="checkbox" name="option1" id="checkMaulfanction" > Maulfanction</td>
+                 </tr>
+                 <tr>
+                     <td  class ='title'><input type="checkbox" name="option1" id="checkOther" > Other</td>
+                 </tr>
+                 <tr>
+                     <td class='button' height='26' align ='center' onclick="dtpOnMap.showDivSelect()">
+                         Show
+                     </td>
+
+                 </tr>
+                 <tr>
+                     <td class='button' height='26' align ='center' onclick="dtpOnMap.hideDtp()">
+                         Hide
+                     </td>
+
+                 </tr>
+             </table>
+         </div>
+     </div>
+
+
+        <div id="loader" class="loader" style="display:none; padding: 10px;">
+
+           <table style="width: 100%; height: 100%; margin: auto">
+               <tr>
+                   <td id='mess_alert' style="height: 80%; text-align: center; color: #ffffff">
+
+                   </td>
+               </tr>
+               <tr >
+                   <td align='center'>
+                       <div id="alert_ok" class="button2" style="width: 50%; " onclick="alertMsg.hide()">
+                           Ok
+                       </div>
+                   </td>
+               </tr>
+           </table>
+            <!-- <img id="img-loader" src="images/ajax-loader.gif" alt="Loading..."/>-->
+        </div>
+        <div style="width: 100%; height: 100%;">
+            <div id="header" >
+
+                <div class="left-menu" style="" >
+                    <table   style="width: 100%; height: 30px;border-spacing:0;" valign="center" cellpadding="0" cellspacing="0">
+                        <tr style=" margin: -2px">
+
+                            <td id= "target" class="button" style="" align="center"  valign="center" rowspan="2" onclick="vhide(this)">
+                                Target
+                            </td>
+							<td class="button zone" module="zone" rowspan="2">
+								zone
+							</td>
+                            <td class="timer" style="height: 16px">
+                                <p style="" id="clock" >no link</p>
+                            </td>
+
+
+                            <td  class="button" id="setting" onclick="vhide(this)" style="vertical-align:middle;horizontal-align:center;" rowspan="2">
+                                <div class="images setting">
+
+                                </div>
+
+								<!--<img src="images/setting.png" style="margin:1px;width:20px;height:20px" title="setting">-->
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td  class="timer"  style="" ><p style="" id="clock2" >no link</p></td>
+                        </tr>
+                    </table>
+                </div>
+
+
+				<div class = "right-menu">
+					<div class="button ex" >
+						<div class="exit">
+
+						</div>
+					</div>
+					<div class="button i" id="information">
+						<div >
+							Information
+						</div>
+
+					</div>
+					<div class="button geo" id="geosearch_v">
+						<div >
+							<img src="images/lupa.png"   >
+						</div>
+
+					</div>
+					<div class="button mh" id="but_mh" onclick="vhide(this)">
+						<div >
+							<img src="images/oblasti.png"   >
+						</div>
+
+					</div>
+				</div>
+
+
+            </div>
+
+            <div id="map" style="width: 100%; height: 100%; margin: auto; z-index: 1" >
+
+            </div>
+
+
+        </div>
+        <div align="center" style=" position: absolute; top: 3px; left: 50%; width: 40px; height: 17px; margin-left: -12px; ">
+            <img src="images/logo.png" style="margin-top: 5px; z-index: 1"  >
+        </div>
+
+
+
+        <div class="border-ridge bg" id="div_avto" style="top: 32px; width: 170px; position: absolute;
+             z-index: 2;
+
+             visibility: hidden;
+             text-shadow: none">
+            <div id="scrollbar1" style="z-index: 2; margin: 0 auto;">
+                <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+                <div class="viewport">
+                    <div class="overview">
+
+                    </div>
+                </div>
+            </div>
+            <div class="pointer"  style="width: 170px;    position:absolute; bottom: 0px;"  >
+                <table style="width: 170px; font-size: 10px;" align = " center" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td class="button"  module="report" id= "k_report" colspan="2" align="center"  style="width: 100%; font-size: 12px;   height: 25px; "> Report</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+
+
+        <div class="border-ridge bg" id="div_information" style="top: 32px; width: 170px;  position: absolute;  right: 0px;
+             z-index: 2;
+
+             visibility: hidden;
+             text-shadow: none">
+				<div id="scrollbar2" style="z-index: 2; margin: 1px auto;">
+                <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+                    <div class="viewport">
+                        <div class="overview">
+
+
+                         </div>
+                     </div>
+                </div>
+		<script type="text/javascript">
+
+		</script>
+
+
+
+            <div id="action_event"   style="width: 170px;     position:absolute; bottom:0px;"  >
+                <table style="width: 100% ;margin:0px; font-size: 11px" align = " center" cellpadding="0" cellspacing="0">
+                    <tr>
+
+
+						<td class="button" id="send_personal" module="personal" align="center"   style="height: 25px;">Personal</td>
+                        <td class="button" id="confirm_event"  align="center"   style="width: 50%; height: 25px; font-size: 11px">Confirm<span id="span_event"></span></td>
+
+                    </tr>
+                </table>
+
+
+
+                <table style="width: 100% ;margin:0px;" align = " center" cellpadding="0" cellspacing="0">
+
+                    <tr>
+                        <td class="button" id="markMap"  align="center" colspan=""  style="width: 100%;  height: 25px; ">Добавить событие</td>
+                    </tr>
+
+
+                </table>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+<!-- todo setting -->
+        <div class="border-ridge bg-white" id="div_setting" style="
+             top: 40px;
+             left: 50%;
+             width: 300px;
+             position: absolute;
+
+             z-index: 2;
+
+             box-shadow: 0px 0px 10px #000, 2px 2px 5px #fff;
+             margin-left: -150px;
+             visibility: hidden;
+             text-shadow: none;">
+            <table cellpadding="0" cellspacing="0" style="width: 100%;" class='title'>
+                <tr>
+                    <td align='center'><p style="margin-right: -20px">Setting</p> </td><td class="cancel" width='20' onclick="vhide({id:'setting'})"></td>
+                </tr>
+            </table>
+            <table class="map-params" style="margin-top: 10px">
+                <tr>
+                    <td>UTC</td>
+					<td><input style="text-align: center"  name="gmt" type="text" size="2" > </td>
+					<td></td>
+					<td></td>
+					<td height="20px" ><div class="button" onclick="set.gmtchange()">  </div></td>
+                </tr>
+				<tr>
+					<td>Start zoom</td>
+					<td><input style="text-align: center" name="zoom" type="text" size="2" > </td>
+					<td></td>
+					<td></td>
+					<td height="20px" ><div class="button" onclick="set.zoomchange()">  </div></td>
+
+				</tr>
+				<tr>
+					<td>Start center</td>
+					<td><input style="text-align: center" name="center_lat" type="text" size="2" > </td>
+					<td><input style="text-align: center" name="center_lng" type="text" size="2" > </td>
+					<td height="20px" onclick="set.center.get(this)"><div class="button set-center">  </div></td>
+					<td height="20px" onclick="set.center.save()"><div class="button">  </div></td>
+				</tr>
+            </table>
+			<table style="width: 100%" class="nn" >
+				<tr>
+					<td style="width: 90px">
+						imei
+					</td>
+					<td>
+						device name
+					</td>
+					<td>
+						phone
+					</td>
+				</tr>
+			</table>
+
+            <table id="register_divise" style="font-size: 10px;">
+                <tr class="${sprite}">
+                    <td class="imei" >
+                         <input type="text" value="${imei}">
+                    </td>
+                    <td class="name">
+                        <input type="text" value="${name}">
+                    </td>
+                    <td class="phone">
+                        <input type="text" value="${phone}">
+                    </td>
+                    <td class="checkbox">
+                        <input type="checkbox">
+                    </td>
+                </tr>
+
+            </table>
+
+            <table class="font" style=" margin: 5px">
+                <tr>
+                    <td id= "add_divise" align="center" class="button" onclick="set.regist()" style="width: 158px; margin: 5px auto; height: 25px; ">
+						add device
+                    </td>
+
+                    <td id="rem_devise" align="center" class="button" onclick="set.rem()" style="width: 158px; margin: 1px auto; height: 25px">
+                        remove device <span id="i_rem_dev"></span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+
+
+
+
+
+<!-- todo соммент дтп -->
+        <div class="border-ridge bg" id="div_confirm_dtp" style="
+             top: 10px;
+             left: 50%;
+             width: 180px;
+             position: absolute;
+
+             z-index: 4;
+
+             box-shadow: 0px 0px 10px #000, 2px 2px 5px #fff;
+             margin-left: -90px;
+             visibility: hidden;
+             text-shadow: none;">
+			<table cellpadding="0" cellspacing="0" style="width: 100%;" class='title'>
+				<tr>
+					<td align='center'>Comment </td><td  class="cancel" width='20' ></td>
+				</tr>
+			</table>
+            <table align="center" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td colspan="2"  align="center" style=" height: 25px; margin:-2px; " >
+                        <form>
+                            <textarea id="commentText" rows="4" style="width: 177px; margin-left:-1px;  margin-bottom: -3px; background: url(images/bg.png);"></textarea>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" id ="confirm" class="button" style="width: 178px;   height: 25px;" onclick="checkCon()">Confirm</td>
+                    <td align="center" id="cancel_dtp"  class="button" style="width: 178px;   height: 25px; "  >Cancel</td>
+            </table>
+        </div>
+
+         <div class="border-ridge bg" id="div_reMark_dtp" style="
+                 top: 10px;
+                 left: 50%;
+                 width: 180px;
+                 position: absolute;
+
+                 z-index: 4;
+
+                 box-shadow: 0px 0px 10px #000, 2px 2px 5px #fff;
+                 margin-left: -90px;
+                 visibility: hidden;
+                 text-shadow: none;">
+             <p align="center" style="   height: 25px; background-image: url(images/fon_nadpis.png); margin: auto; "> Change-Comment </p>
+             <table align="center" cellpadding="0" cellspacing="0">
+                 <tr>
+                     <td colspan="2"  align="center" style=" height: 25px; margin:-2px; " >
+                         <form>
+                             <textarea id="reMarkText" rows="4" style="width: 177px; margin-left:-1px;  margin-bottom: -3px; background: url(images/bg.png);"></textarea>
+                         </form>
+                     </td>
+                 </tr>
+                 <tr>
+                     <td align="center"  class="button" style="width: 178px;   height: 25px;" onclick="dtpEvent.reMarkEvent();vhide({id:'cancel_reMark'});" >Исправить</td>
+                     <td align="center" id="cancel_reMark"  class="button" style="width: 178px;   height: 25px;" >Cancel</td>
+             </table>
+         </div>
+
+
+
+
+
+
+        <div class="border-ridge bg" id="div_confirm_cancel_dtp" style="
+             bottom: 25px;
+             right: 25px;
+             width: 180px;
+             position: absolute;
+
+             z-index: 2;
+
+             box-shadow: 0px 0px 10px #000, 2px 2px 5px #fff;
+             margin-left: -90px;
+             visibility: hidden;
+             text-shadow: none;">
+            <table align="center" cellpadding="0" cellspacing="0" style="width: 180px;">
+                <tr>
+                    <td align="center" colspan="2" valign="center" style="   background-image: url(images/fon_nadpis.png);"><img src="images/rem_dtp.png"  ><span id="selectRemove"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" id ="confirm_remove" class="button" style="   height: 25px;" >Confirm</td>
+                    <td align="center" id="cancel_remove"  class="button" style="   height: 25px;">Cancel</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="border-ridge" id="div_geosearch" style="
+             top: 42px;
+             left: 50%;
+             width: 300px;
+             position: absolute;
+             background-image: url(images/fon_nadpis.png);
+             z-index: 1;
+
+             box-shadow: 0px 0px 10px #000, 2px 2px 5px #fff;
+             margin-left: -150px;
+             color: #0084c2;
+             visibility: hidden;">
+			<table cellpadding="0" cellspacing="0" style="width: 100%; padding: 2px" class='title'>
+				<tr>
+					<td align='center'><p style="margin-right: -20px">GEO Search!</p> </td><td class="cancel" width='20' onclick="geocoding.vhide()"></td>
+				</tr>
+			</table>
+            <input id="address" style="width:296px;" type="text"/>
+        </div>
+        <!-- окошко рассылки емайлов -->
+        <div id="div_send"  class="border-ridge" style="
+             bottom: 100px;
+             right: 160px;
+             width: 180px;
+             position: absolute;
+             background-image: url(images/bg.png);
+             z-index: 4;
+
+             box-shadow: 0px 0px 10px #000, 2px 2px 5px #fff;
+             visibility: hidden;
+
+             text-shadow: none;">
+
+            <p align="center" style="   height: 25px; background-image: url(images/fon_nadpis.png); margin: auto; "> Comment</p>
+            <table align="center" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td colspan="2"  align="center" style=" height: 25px; margin:-2px; " >
+                        <form>
+                            <textarea id="commentTextEmail" class="font" rows="4" style="width: 177px; margin-left:-1px;  margin-bottom: -3px; background: url(images/bg.png);"></textarea>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="checkbox" id="alpha_sms" checked="checked"><span>alpha_sms</span><br/>
+                        <input type="checkbox" id="kyivstar_sms" checked="checked"><span>kyivstar_sms</span><br/>
+                        <input type="checkbox" id="email" checked="checked"><span>e-mail</span><br/>
+                        <input type="checkbox" id="motokiev" checked="checked"><span>moto.kiev.ua</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" id ="confirm_send" class="button" onclick="vhide(this);" style="width: 178px;   height: 25px;" >Alert</td>
+                    <td align="center" id="cancel_send"  class="button" onclick="vhide(this)" style="width: 178px;   height: 25px;">Cancel</td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="div_oblasti" class="border-ridge bg" style="
+             top: 35px;
+             right: 170px;
+             width: 150px;
+             position: absolute;
+
+             z-index: 1;
+
+             box-shadow: 0px 0px 10px #000, 2px 2px 5px #fff;
+             margin-left: 0px;
+             opacity: 0.8;
+             color: #0084c2;
+             visibility: hidden;">
+            <!-- скрипт показа областей -->
+        </div>
+
+        <div id="mh" style="
+             top: 35px;
+             right: 170px;
+             width: 150px;
+             position: absolute;
+             z-index: 1;
+             box-shadow: 0px 0px 10px #000, 2px 2px 5px #fff;
+             margin-left: 0px;
+             visibility: hidden;
+             opacity: 0;
+             ">
+
+           <!-- <div class="button" id="oblasti">
+                <p  align="center" style="margin: 3px; "  >Wiki Области</p>
+            </div>-->
+
+			<form id="form_statistics" method="post"  target="blank" action="statistics.php" style="display: none;">
+				<input name="login" type="text"  maxlength="15" style="whidth: 160px" value="<?php echo  $login ?>" >  <!-- форма для перехода на страниицу статистики -->
+			</form>
+
+            <div class="button" id="statistics">
+                <p  align="center" style="margin: 3px; "  >Статистика ДТП</p>
+            </div>
+            <div class="button" id="statisticsOnMap" onclick="vhide(this)">
+                <p  align="center" style="margin: 3px; "  >ДТП на карте</p>
+            </div>
+            <!--<div class="button" id="btn_regions" onclick="vhide(this)">-->
+          <div class="button" id="btn_regions" module ="region">
+               <p  align="center" style="margin: 3px; "  >Регионы</p>
+           </div>
+           <div class="button"  module = 'weather'>
+               <p  align="center" style="margin: 3px; "  >Борисполь радар</p>
+           </div>
+           <div class="button"  module = 'donor'>
+               <p  align="center" style="margin: 3px; "  >Donor</p>
+           </div>
+       </div>
+   </body>
+
+   <script>
+       //todo стартовые параметры
+       var points = <?php echo  $points; ?>  ;
+       var options = <?php echo  $options; ?>  ;
+       var devices = <?php echo  $devices; ?>  ;
+       var login="<?php echo  $login; ?>";
+       var gspeed;
+
+
+
+       var uzerClick=(-1);
+       var selectUserImei;
+       devices = JSON.parse(devices) ;
+   </script>
+
+
+   <script type="text/javascript">
+       // todo расчет парметров экрана
+       var width=document.body.clientWidth; // ширина
+       var height=document.body.clientHeight; // высота
+       var height_div_avto;
+       var h;
+       //alert(width);
+
+       var w=(width-6)*100/width;
+
+       h=100*35/height;
+       //h=h+"px";
+       h=100-h;
+       h=h+"%";
+       //alert(h);
+       var h_txt;
+       var cmpHeader = document.getElementById("header");
+       var cmpMap = document.getElementById("map");
+       var docWidth = (document.body.clientWidth -2) +'px';
+       var docHeight = (document.body.clientHeight-15)+'px';
+       h_txt=100-(100*120)/height;
+       h_txt= h_txt+"%";
+
+       height_div_avto =((height-40)/height)*100;
+       height_div_avto=height_div_avto+"%";
+       //alert(height_div_avto);
+      // document.getElementById("header").style.width =  w+"%";
+       document.getElementById("map").style.height =  (document.body.clientHeight-22)+'px';
+    //   document.getElementById("div_avto").style.height =  height_div_avto;
+       document.getElementById("div_avto").style.height = (document.body.clientHeight -40) +'px';
+      // document.getElementById("div_information").style.height =  height_div_avto;
+       document.getElementById("div_information").style.height =  (document.body.clientHeight -40) +'px';
+       document.getElementById("header").style.width =  (document.body.clientWidth -2) +'px';
+       ///document.getElementById("scrollbar1").style ="50px"
+
+   </script>
+
+
+   <script>
+       //todo инициализация карты
+   var project = function (map, crs, latlng) {
+       return crs.latLngToPoint(latlng, map.getZoom());
+   };
+
+   L.TileLayer.prototype._update = function () {
+       var bounds = this._map.getPixelBounds(),
+               zoom = this._map.getZoom(),
+               tileSize = this.options.tileSize;
+
+       if (typeof this.options.crs !== 'undefined') {
+           bounds.min = project(this._map, this.options.crs, this._map.unproject(bounds.min));
+           bounds.max = project(this._map, this.options.crs, this._map.unproject(bounds.max));
+       }
+
+       if (zoom > this.options.maxZoom || zoom < this.options.minZoom) {
+           return;
+       }
+
+       var nwTilePoint = new L.Point(
+               Math.floor(bounds.min.x / tileSize),
+               Math.floor(bounds.min.y / tileSize)),
+               seTilePoint = new L.Point(
+                       Math.floor(bounds.max.x / tileSize),
+                       Math.floor(bounds.max.y / tileSize)),
+               tileBounds = new L.Bounds(nwTilePoint, seTilePoint);
+
+       this._addTilesFromCenterOut(tileBounds);
+
+       if (this.options.unloadInvisibleTiles || this.options.reuseTiles) {
+           this._removeOtherTiles(tileBounds);
+       }
+   };
+   L.TileLayer.prototype._getTilePos = function (tilePoint) {
+       var origin = this._map.getPixelOrigin(),
+               tileSize = this.options.tileSize;
+
+       if (typeof this.options.crs !== 'undefined') {
+           origin = project(this._map, this.options.crs, this._map.unproject(origin));
+       }
+
+       return tilePoint.multiplyBy(tileSize).subtract(origin);
+   };
+
+
+
+       var map = new L.Map('map', {center: new L.LatLng(
+               options.startCentre.lat ? parseFloat(options.startCentre.lat) : (50.442),
+                       options.startCentre.lng ? parseFloat(options.startCentre.lng): (30.558)
+       ),
+           zoom: options.startZoom ?  parseFloat(options.startZoom) : 11,
+            closePopupOnClick: false, fadeAnimation: false } );
+       var osm = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+
+       var ggl =new L.TileLayer('http://mt0.googleapis.com/vt/lyrs=m@207000000&hl=ru&src=api&x={x}&y={y}&z={z}&s=Galile',{maxZoom: 18,minZoom:3});
+       var  gglsats = new L.TileLayer('https://khms1.google.com/kh/v=142&src=app&x={x}&s=&y={y}&z={z}&s=Gali', {maxZoom:18, minZoom:3});
+
+       var yan = new L.TileLayer('http://{s}.maps.yandex.net/tiles?l=map&v=2.31.1&x={x}&s=&y={y}&z={z}&lang=ru-RU',
+               {attribution: 'Data, imagery and map information provided by <a href="http://maps.yandex.ru" target="_blank">Yandex</a>',
+                   subdomains: ['vec01','vec02','vec03','vec04'],
+                   maxZoom: 17, crs: L.CRS.EPSG3395,
+                   zIndex: 5});
+
+
+
+
+      // var ytraffic = new L.Yandex("null", {traffic:true, opacity:0.8, overlay:true});
+       map.addLayer(window[options.map ? options.map : ggl ]);
+     //  map.addControl(new L.Control.Layers( {'OSM':osm, 'Google':ggl, 'Google sat':gglsats , "Yandex":yndx   }, {"Пробки":ytraffic} ));
+  // map.addControl(new L.Control.Layers( {'OSM':osm, 'Google':ggl, 'Google sat':gglsats    }  ));
+
+   var baseLayers =  {'OSM':osm, 'Google':ggl, 'Google sat':gglsats, 'Yandex': yan  } ;
+
+
+   var GoogleTrafficLayer = new L.TileLayer('http://{s}.google.com/vt?hl=ru&src=app&lyrs=m@177000000,traffic|seconds_into_week:-1&x={x}&s=&y={y}&z={z}&style=15',
+           {attribution: 'Traffic data provided by <a href="http://maps.google.com" target="_blank">Google</a>',
+               maxZoom: 19, subdomains: ['mts0','mts1'],
+               traffic: true,
+               zIndex: 21});
+
+   YandexExtTrafficLayer = new L.TileLayer('http://jgo.maps.yandex.net/tiles?l=trf,trfe&lang=ru-RU&x={x}&s=&y={y}&z={z}',
+           {attribution: 'Traffic data provided by <a href="http://maps.yandex.ru" target="_blank">Yandex</a>',
+               maxZoom: 17, crs: L.CRS.EPSG3395,
+               traffic: true,
+               zIndex: 23});
+
+
+
+   var YandexTrafficLayer = new L.TileLayer('http://jgo.maps.yandex.net/tiles?l=trf&lang=ru-RU&x={x}&s=&y={y}&z={z}',
+           {attribution: 'Traffic data provided by <a href="http://maps.yandex.ru" target="_blank">Yandex</a>',
+               maxZoom: 17, crs: L.CRS.EPSG3395,
+               traffic: true,
+               zIndex: 22});
+
+    YandexTrafficLayer.getTileUrl = YandexExtTrafficLayer.getTileUrl = function (tilePoint, zoom) {
+       var tm = new Date();
+       var url = L.TileLayer.prototype.getTileUrl.call(this, tilePoint, zoom);
+       return url + '&tm=' + parseInt(tm.getTime()/1000, 10);
+   };
+
+   var allLayers = [GoogleTrafficLayer, YandexTrafficLayer, YandexExtTrafficLayer];
+
+   for (var i in allLayers) {
+     //  L.Util.stamp(allLayers[i]);
+   }
+  // L.Util.stamp(YandexExtTrafficLayer) ;
+
+
+   var trafficLayers = {"Ggl Пробки": GoogleTrafficLayer,
+           "Yan Пробки": YandexExtTrafficLayer};
+
+
+   var layerControl = L.control.layers(baseLayers, trafficLayers, {autoZIndex: false}); layerControl.addTo(map);
+
+       var myIcon; //иконка текущего положения
+
+
+
+  //     var point = new L.Point(0, -3); //офсет для попап
+
+
+       L.polygon([
+           [51.509, -0.08],
+           [51.503, -0.06],
+           [51.51, -0.047]
+       ]).addTo(map).bindPopup("I am a polygon.");
+
+
+       L.circle([50.252, 28.66], 2000, {
+           color: 'red',
+           fillColor: '#f03',
+           fillOpacity: 0.5
+       }).addTo(map).bindPopup("Список будет тут (а може еще гдето)");
+
+       var iconDiv; //иконка c дим
+       var markerId = [];
+       var countMarker = 0;
+
+
+
+       var popup = L.popup();
+/*
+       function onMapClick(e){
+          //alert (e.latlng);
+           $('#clock2').css('background-color','red');
+           //map.panTo(L.latLng(50.439, 30.397)); //центрирование карты
+           marker=L.marker(e.latlng, {icon: myIcon}).bindPopup("I am a marker.").addTo(map);
+       }
+       */
+
+        if(brr =='Android'){
+            function geoPosition(){
+                try{
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        var latitude = position.coords.latitude;
+                        var longitude = position.coords.longitude;
+                        // alert(latitude+' '+longitude);
+                        //scope.show(latitude,longitude)
+                        map.panTo(L.latLng(latitude, longitude));
+                        map.setZoom(14);
+                    });
+                }catch (err){
+
+                }
+
+            };
+            geoPosition();
+        }
+
+
+
+   </script>
+
+
+
+
+
+   <script> // пересчет времени отображения от гринвича
+       //var gmt=2; // счещение времени от гринвича
+
+       var activClock=0;
+
+
+       if(activClock==1){
+           //document.getElementById("header").style.width =  width+"px";
+           //clock();
+           clock.show();
+           //pusk();
+           clock.start_site();
+         // zaprosDtp();
+       };
+
+       function activSite(){
+           activClock=1;
+           //clock();
+           clock.show();
+          // pusk();
+           clock.start_site();
+           //zaprosDtp();
+       };
+
+     //  var gmt=<?php echo  $gmt; ?>;
+   var gmt = parseFloat(options.gmt);
+     //  document.getElementById("gmt").value=gmt;
+
+   </script>
+
+
+
+   <script>
+   // todo обновление координат
+   var dlit=5000;  //каждые 5 секунд
+
+   var zaprosPoint;
+   var kz= null;
+   var timeOut_id, interval_id_z = null, interval_id_dtp=null;
+   var disconnect = false;
+   function pusk(){
+       if(document.getElementById("header").style.width!=((document.body.clientWidth -2) +'px') ){
+           document.getElementById("header").style.width=(document.body.clientWidth -2) +'px';
+         //  alert(document.body.clientWidth -2);
+       };
+       if(document.getElementById("map").style.height !=  ((document.body.clientHeight-32)+'px') ){
+           document.getElementById("map").style.height =  (document.body.clientHeight-32)+'px';
+       }
+       if( document.getElementById("div_avto").style.height != (document.body.clientHeight -40) +'px'){
+           document.getElementById("div_avto").style.height = (document.body.clientHeight -40) +'px'
+       }
+       if( document.getElementById("div_information").style.height != (document.body.clientHeight -40) +'px'){
+           document.getElementById("div_information").style.height = (document.body.clientHeight -40) +'px'
+       }
+
+       if( document.getElementById("scrollbar1").style.height != (document.body.clientHeight -70) +'px'){
+           document.getElementById("scrollbar1").style.height = (document.body.clientHeight -70) +'px';
+
+           scrollbar1.tinyscrollbar_update('relative');
+           $('#scrollbar1').tinyscrollbar();
+       }
+       if( document.getElementById("scrollbar2").style.height != (document.body.clientHeight -100) +'px'){
+           document.getElementById("scrollbar2").style.height = (document.body.clientHeight -100) +'px';
+
+           if(dtp && dtp.scrollbar){
+               dtp.scrollbar.dtptinyscrollbar_update()
+           }
+         //  scrollbar2.tinyscrollbar_update();
+           // $('#scrollbar1').tinyscrollbar();
+       }
+
+
+
+       if(!eventBlock.blocked && !zaprosPoint){ // eсли мышкой не заблокированно и запрос не начался
+           zaprosPoint = true;
+           $('#clock2').parent('td').css("background-color",'#transparent');
+
+           $.ajax({
+               type:'POST',
+               url:'news.php',
+               data:'pass=' + pass + '&login=' + login,
+               success:function (data) {
+                   zaprosPoint = false;
+                   disconnect = false;
+                   $('#clock2').parent('td').css("background-color",'#transparent');
+                   kz = data;
+                   if(!eventBlock.blocked){
+                       app.news(data) ;
+                       clock.show_request();
+                       eventBlock.clearStart_z();
+                   }
+               },
+               error: function(xhr, status, error){
+                   console.log('Обрыв связи1');
+                   disconnect = true;
+                   $('#clock2').parent('td').css("background-color",'#ff0000');
+                   setTimeout(function(){ eventBlock.clearStart_z();},5000)
+               }
+
+           });
+       }else{
+           if(!eventBlock.blocked){
+               eventBlock.clearStart_z();
+           }
+       }
+
+
+   };
+
+   function repeadZapros(){
+       try{
+           kz = $.ajax({
+               type:'POST',
+               url:'z.php',
+               data:'countUzers=' + countUzers + '&login=' + login,
+               async: false,
+               success:function (data) {
+                   zaprosPoint = false;
+                   disconnect = false;
+                   $('#clock2').parent('td').css("background-color",'transparent');
+
+               },
+               error: function(xhr, status, error){
+                   console.log('Обрыв связи2');
+                   disconnect = true;
+                   $('#clock2').parent('td').css("background-color",'#ff0000');
+               }
+
+           }).responseText;
+           proverka_popoln();
+           setTimeout(function(){
+               pusk();
+               setTimeout(function(){
+                           repeatZaprosEvens()
+                       },5000);
+           },5000);
+       }catch (err){
+           setTimeout(function(){repeadZapros();},5000);
+       }
+   };
+
+
+
+
+
+//todo тач старт
+
+
+   function myTouchStop(event) {
+       var touches = event.changedTouches,
+               first = touches[0],
+               type = "";
+       switch(event.type)
+       {
+           case "touchstart": type = "mousedown"; break;
+           case "touchmove":  type="mousemove"; break;
+           case "touchend":   type="mouseup"; break;
+           default: return;
+       }
+
+       var simulatedEvent = document.createEvent("MouseEvent");
+       simulatedEvent.initMouseEvent(type, true, true, window, 1,
+               first.screenX, first.screenY,
+               first.clientX, first.clientY, false,
+               false, false, false, 0/*left*/, null);
+
+
+       var c = map.getContainer();
+       var p = L.DomEvent.getMousePosition( simulatedEvent, c);
+       var latlng = map.containerPointToLatLng(p);
+
+       if(disconnect == true){
+           $('#clock2').parent('td').css("background-color",'#ff0000');
+       }else{
+           $('#clock2').parent('td').css("background-color",'transparent');
+       }
+
+       eventBlock.blocked = false;
+
+       eventBlock.clearStart_z();
+       eventBlock.clearStart_dtp();
+
+   };
+   document.getElementById('map').addEventListener('touchend', myTouchStop, false);
+
+
+   function myTouchStart(event) {
+       var touches = event.changedTouches,
+               first = touches[0],
+               type = "";
+       switch(event.type)
+       {
+           case "touchstart": type = "mousedown"; break;
+           case "touchmove":  type="mousemove"; break;
+           case "touchend":   type="mouseup"; break;
+           default: return;
+       }
+       var simulatedEvent = document.createEvent("MouseEvent");
+       simulatedEvent.initMouseEvent(type, true, true, window, 1,
+               first.screenX, first.screenY,
+               first.clientX, first.clientY, false,
+               false, false, false, 0/*left*/, null);
+
+
+       var c = map.getContainer();
+       var p = L.DomEvent.getMousePosition( simulatedEvent, c);
+       var latlng = map.containerPointToLatLng(p);
+       $('#clock2').parent('td').css("background-color",'#8E9799');
+       eventBlock.blocked = true;
+   };
+   document.getElementById('map').addEventListener('touchstart', myTouchStart, false);
+
+
+   // cобытия мыши на блокировку запроса
+   map.on('mousedown', function(){
+       $('#clock2').parent('td').css("background-color",'#8E9799');
+       eventBlock.blocked = true;
+   });
+   map.on('mouseup', function(){
+       if(disconnect == true){
+           $('#clock2').parent('td').css("background-color",'#ff0000');
+       }else{
+           $('#clock2').parent('td').css("background-color",'transparent');
+       }
+       eventBlock.blocked = null;
+       eventBlock.clearStart_z();
+       eventBlock.clearStart_dtp();
+   });
+   document.onmouseup = function(){
+       if(disconnect == true){
+           $('#clock2').parent('td').css("background-color",'#ff0000');
+       }else{
+           $('#clock2').parent('td').css("background-color",'transparent');
+       }
+       eventBlock.blocked = false;
+       $('.timer').eq(1).css("background-color",'transparent');
+      // alert('ds')
+   };
+   //////////////////////////////////////////
+
+       var ok=[];
+       var arrOk=[];
+       //var pi;
+       var iv;
+
+   </script>
+
+
+
+   <!--todo СОБЫТИЯ! DTP -->
+
+
+    <script>//////////////////////////////////////////////////////////////////////////////////////// СОБЫТИЯ!
+
+    $('#information').click(function(){
+        vhide({id:'information'})
+    })
+
+
+
+
+
+    </script>
+
+
+    <script>
+
+    </script>
+
+
+    <script type="text/javascript">
+
+
+    </script>
+
+
+
+</html>

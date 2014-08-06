@@ -1,0 +1,78 @@
+<html>
+<head>
+    <link rel="shortcut icon" href="images/icon.png" rel="shortcut icon" href="images/icon.png"/>
+    <title>Atlas</title>
+    <link rel="stylesheet" href="css/statistics.css"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <script>
+        var arrEvent = eval('<?php echo  $arrEvent; ?>');
+        var text = "";
+        var c = 0;
+        var color;
+        var coll;
+        var ico;
+        function unparseTime(t) { //разпарсинг даты
+            var arr = [];
+            arr = t.split("");
+            var realTime;
+            realTime = arr[4] + arr[5] + "/" + arr[2] + arr[3] + "/" + arr[0] + arr[1] + " " + arr[6] + arr[7] + ":" + arr[8] + arr[9] + ":" + arr[10] + arr[11];
+
+            return realTime;
+        }
+
+
+
+        for (var i = 0; i < arrEvent.length; i++) {
+            if (c == 0) {
+                c++;
+                color = "rgba(189, 240, 253, 0.82)";
+            } else {
+                color = "rgba(255, 255, 255, 0.82)";
+                c = 0;
+            }
+
+            if (arrEvent[i].type == "accident") {
+                ico = "<img src='images/mrk_dtp.png' height='20px' alt='ДТП'>"
+            }
+            if (arrEvent[i].type == "malfunction") {
+                ico = "<img src='images/mrk_malfunction.png' height='20px' alt='поломка'>"
+            }
+
+            text += "<tr><td style='margin:5px; background-color: " + color + "'>" + arrEvent[i].id + "</td><td align = 'center' style='margin:5px; width: 150px;background-color: " + color + "'>" + unparseTime(arrEvent[i].dateTime) + "</td><td style='margin:5px; background-color: " + color + "'>" + ico + " </td><td style='margin:5px; background-color: " + color + "'> " + arrEvent[i].comment + "</td></tr>";
+
+
+        }
+        var height = arrEvent.length * 1.6;
+
+
+        function ready() {
+
+
+            document.body.background = "images/wraplers/" + getRandomInt(1, 9) + ".jpg";
+            document.getElementById("div_st").innerHTML = text;
+
+
+            function getRandomInt(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+
+        }
+
+
+    </script>
+</head>
+<body id="index" onload="ready()">
+<p style="color: white; text-align: center">Статистика</p>
+
+<div style=" margin: 10px auto;">
+
+    <table id="div_st" style="margin: 10px auto; max-width: 1000px;" cellpadding="5"
+           cellspacing="1">
+
+    </table>
+
+</div>
+</body>
+</html>

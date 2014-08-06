@@ -1,0 +1,178 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="shortcut icon" href="images/icon.png" rel="shortcut icon" href="images/icon.png"/>
+    <title>Atlas</title>
+
+   <!-- <link rel="stylesheet" href="css/leaflet.css"/>-->
+    <link rel="stylesheet" href="css/main.css"/>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height,minimum-scale=1.0, maximum-scale=4.0">
+
+
+    <meta name="MobileOptimized"  />
+    <meta name="PalmComputingPlatform" content="true" />
+    <script src="js/rain.js" type="text/javascript">//спеэфект "дождь"</script>
+
+
+</head>
+
+
+<body id="index"  onload="app.init()">
+
+<div style=" width: 390px;  box-shadow: 0px 0px 10px #ffffff;   position:absolute;
+	left:50%;
+	margin:5px;
+	padding:5px;
+	margin-left:-195px;
+	z-index:3;
+	color: red;
+	text-align: center;
+	">
+    <p id="title_reg">Регистрация новго пользователя</p>
+
+
+</div>
+
+
+<canvas id="myCanvas" style="position: absolute;
+    z-index: -1;
+    top: 0px;
+    left: 0px;" width="" height="">
+    Ваш браузер не поддерживает Canvas.
+</canvas>
+
+<div align="center" id="index1" >
+    <p style="margin: 10px"><img src="images/mainlogo.png"></p>
+
+    <div id="form">
+
+
+
+        <label>Login<br></label>
+        <input name="login" type="text" style="whidth: 160px" maxlength="15">
+
+        <br>
+        <label>Pass<br></label>
+        <input name="password1" type="password" style="whidth: 160px" maxlength="15">
+        <br>
+        <label>Confirm pass<br></label>
+        <input name="password2" type="password" style="whidth: 160px" maxlength="15">
+
+
+        <br>
+        <div id ="submit" class="button" style="width: 100px; margin: 20px auto; padding: 5px">Регистрация</div>
+    </div>
+	<div style=" font-size: 16px;">
+		<a href="../atlas">Вернуться на главную</a>
+	</div>
+
+</div>
+
+
+<script>
+    var app = {
+        el:null,
+        init:function () {
+            var scope = this;
+            this.el = {
+                login:document.getElementById('form').getElementsByTagName('input')[0],
+                pass:document.getElementById('form').getElementsByTagName('input')[1],
+                confirm_pass:  document.getElementById('form').getElementsByTagName('input')[2],
+                submit: window['submit']
+            }
+            this.el.submit.onclick =function(){
+                scope.tryEnter();
+            }
+            window.onkeypress =  zx;
+            function zx(e){
+                var charCode = (typeof e.which == "number") ? e.which : e.keyCode
+                if(charCode==13){
+                    scope.tryEnter();
+                }
+            }
+        },
+        tryEnter:function(){
+            var xhr = this.getXmlHttp();
+            var  login = this.el.login.value, pass = this.el.pass.value, confirm_pass = this.el.confirm_pass.value ;
+            xhr.open("POST", "registration.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange=function(){
+                if (xhr.readyState==4 && xhr.status==200){
+                   // console.log(xhr.responseText) ;
+					//alert(xhr.responseText) ;
+					window['form'].innerHTML ='<p style="margin-bottom: 75px">'+ xhr.responseText+'</p>';
+
+                    /*setTimeout(function(){
+						window.location.href = '../atlas'
+					},5000)*/
+
+
+                }else if(xhr.readyState==4 && xhr.status==404){
+                    // window.location.href = xhr.responseText;
+                }else if(xhr.readyState==4 && xhr.status==500){
+					alert(xhr.responseText)
+                    // window.location.href = xhr.responseText;
+                }
+            }
+            xhr.send('login='+login+'&pass='+pass+'&confirm_pass='+confirm_pass);
+            return false;
+        },
+        getXmlHttp: function(){
+            try {
+                xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e) {
+                try {
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (E) {
+                    xmlhttp = false;
+                }
+            }
+            if (!xmlhttp && typeof XMLHttpRequest != 'undefined') {
+                xmlhttp = new XMLHttpRequest();
+            }
+            return xmlhttp;
+        }
+    }
+</script>
+
+
+
+
+<script>
+    var width = document.body.clientWidth; // ширина
+    var height = document.body.clientHeight; // высота
+    document.getElementById("myCanvas").width = width;
+    document.getElementById("myCanvas").height = height;
+    var canvas = document.getElementById("myCanvas");
+    canvas.style.zIndex = '-10';
+    var c = canvas.getContext("2d");
+    var img = new Image();   // Создать новый объект Image
+    img.src = 'images/index_map.jpg'; // Установить путь к источнику
+    var pix = [];
+    img.onload = function () {
+        c.drawImage(img, 0, 0, width, height);
+        var imgd = c.getImageData(0, 0, width, height); // область для с'ема массива пикселей
+        pix = imgd.data; /// массив пикселей фона
+        c.fillStyle = "rgba(0,0,0, 0.8)";
+        c.fillRect(0, 0, width, height);
+    }
+    var r = 255;
+    var b = 255;
+    var g = 255;
+    function rain() {
+        for (var i = 0; i < 50; i++) {
+            s = new dot();
+            s.s();
+        }
+    }
+    rain();
+</script>
+
+
+</body>
+</html>
+
+
+
