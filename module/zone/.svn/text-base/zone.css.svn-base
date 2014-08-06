@@ -1,0 +1,14 @@
+.name-zone{
+	color: #002769;
+	text-shadow: 0 0 3px #fff;
+	font-weight: bold;
+	font-size: 16px;
+	width: inherit !important;
+	background: transparent;
+	margin-top: -10px;
+
+}
+.name-zone .leaflet-popup-content-wrapper, .name-zone .leaflet-popup-tip{
+	background: transparent;
+	box-shadow: none;
+}

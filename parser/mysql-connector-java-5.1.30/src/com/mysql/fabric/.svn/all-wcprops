@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric
+END
+ShardMapping.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/ShardMapping.java
+END
+ShardTable.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/ShardTable.java
+END
+FabricStateResponse.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/FabricStateResponse.java
+END
+RangeShardMapping.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/RangeShardMapping.java
+END
+ServerMode.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/ServerMode.java
+END
+FabricConnection.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/FabricConnection.java
+END
+Server.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/Server.java
+END
+Response.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/Response.java
+END
+FabricCommunicationException.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/FabricCommunicationException.java
+END
+HashShardMapping.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/HashShardMapping.java
+END
+ShardingType.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/ShardingType.java
+END
+ServerGroup.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/ServerGroup.java
+END
+ShardMappingFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/ShardMappingFactory.java
+END
+ServerRole.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/ServerRole.java
+END
+DumpResponse.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/DumpResponse.java
+END
+ShardIndex.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/ShardIndex.java
+END

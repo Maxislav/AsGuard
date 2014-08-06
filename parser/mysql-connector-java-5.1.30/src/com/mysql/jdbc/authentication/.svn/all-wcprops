@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/jdbc/authentication
+END
+MysqlClearPasswordPlugin.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/jdbc/authentication/MysqlClearPasswordPlugin.java
+END
+MysqlNativePasswordPlugin.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/jdbc/authentication/MysqlNativePasswordPlugin.java
+END
+Sha256PasswordPlugin.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/jdbc/authentication/Sha256PasswordPlugin.java
+END
+MysqlOldPasswordPlugin.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/jdbc/authentication/MysqlOldPasswordPlugin.java
+END

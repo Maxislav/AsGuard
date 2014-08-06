@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/jdbc
+END
+FabricMySQLConnectionProperties.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/jdbc/FabricMySQLConnectionProperties.java
+END
+ErrorReportingExceptionInterceptor.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/jdbc/ErrorReportingExceptionInterceptor.java
+END
+JDBC4FabricMySQLConnectionProxy.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/jdbc/JDBC4FabricMySQLConnectionProxy.java
+END
+FabricMySQLConnection.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/jdbc/FabricMySQLConnection.java
+END
+FabricMySQLDriver.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/jdbc/FabricMySQLDriver.java
+END
+FabricMySQLConnectionProxy.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/jdbc/FabricMySQLConnectionProxy.java
+END
+FabricMySQLDataSource.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/jdbc/FabricMySQLDataSource.java
+END
+JDBC4FabricMySQLConnection.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/jdbc/JDBC4FabricMySQLConnection.java
+END

@@ -1,0 +1,84 @@
+<div class="report border-ridge bg" id="div_report" style="
+             top: 32px;
+             left: 50%;
+             width: 180px;
+             position: absolute;
+
+             z-index: 2;
+             box-shadow: 0px 0px 10px #000, 2px 2px 5px #fff;
+             margin-left: -90px;
+             display: none;
+             opacity: 0;
+             text-shadow: none;">
+	<table cellpadding="0" cellspacing="0" style="width: 100%;" class='title'>
+		<tr>
+			<td align='center'>Track </td><td class="cancel" width='20' ></td>
+		</tr>
+
+
+	</table>
+
+
+	<table cellpadding="0" cellspacing="0" style="width: 100%;" class='title'>
+
+		<tr >
+			<td align='center'><span>Device / Устройство </span><br><span id="report_user">undefined / не выбрано</span> </td>
+		</tr>
+
+	</table>
+
+	<!--<p align="center" style="   height: 25px; background-image: url(images/fon_nadpis.png); margin: auto; ">Device/user: <span id="report_user">undefined</span></p>-->
+	<p align="center">From date</p>
+
+	<form action="" style="z-index: 3" >
+
+		<p style="margin-top:0px; z-index: 3" align="center"  ><input id="forma_from" style="z-index: 3; width: 90%" type="text" value="dd-mm-yy" name="mydata" onfocus="this.select();lcs(this)" onclick="event.cancelBubble=true;this.select();lcs(this)" >	</p>
+
+	</form>
+	<p align="center">To date</p>
+
+	<form action="" style="z-index: 3" >
+
+		<p style="margin-top:0px; z-index: 3"  align="center" ><input id="forma_to" style="z-index: 3; width: 90%" type="text"  value="dd-mm-yy" name="mydata" onfocus="this.select();lcs(this)" onclick="event.cancelBubble=true;this.select();lcs(this)" >	</p>
+
+	</form>
+		<div class="musor">
+			<input class='in-musor' type="checkbox"><span>Фильтр мусорных точек</span>
+		</div>
+
+	<div class="" style="margin-top: 5px" >
+		<table align = "center" cellpadding="0" cellspacing="0" style="margin-top: 0px" >
+
+			<tr>
+				<td id="show_track"   class="button" align = "center"  style="width: 178px;   height: 25px;">Show track</td>
+				<td id="show_graph_speed"   class="button" module='gspeed' align = "center"  style="width: 178px;   height: 25px;">Graph speed</td>
+			</tr>
+			<tr>
+				<td  align = "center"  style="width: 159px;   height: 25px; border-bottom: solid 1px #01a7ad; border-top: solid 1px #01a7ad; " colspan="2">Points: <span class="points"> ...</span> </td>
+			</tr>
+
+			<tr>
+				<td  align = "center"  style="width: 159px;   height: 25px; border-bottom: solid 1px #01a7ad; " colspan="2">Distance km: <span id="dist_t"> ...</span> </td>
+			</tr>
+			<tr>
+				<td  align = "center"  style="width: 159px;   height: 25px;   " colspan="2" >Vmax km/h: <span class="vmax" colspan="2"> ...</span>  </td>
+			</tr>
+
+			<tr>
+				<td  align = "center"  style="width: 159px;   height: 25px;   " colspan="2">  <img src="images/lineyka.png"   ></td>
+			</tr>
+
+
+
+			<tr>
+				<td id="skryt" class="button" align = "center"  style="width: 159px;   height: 25px; " colspan="2">Hide track</td>
+			</tr>
+
+		</table>
+
+	</div>
+
+
+
+
+</div>

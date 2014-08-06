@@ -1,0 +1,25 @@
+<div>
+    <div>
+        <div class="button roll">
+            &harr;
+        </div>
+    </div>
+    <div class="comment">
+        ${comment}
+    </div>
+
+    <div class="status">
+        <div   {{if (gai ==1)}}class="gai"{{/if}}>
+
+        </div>
+        <div  {{if (ambulance ==1)}}class="ambulance"{{/if}}>
+
+        </div>
+        <div  {{if (mh ==1)}}class="mh"{{/if}}>
+
+        </div>
+
+    </div>
+
+
+</div>

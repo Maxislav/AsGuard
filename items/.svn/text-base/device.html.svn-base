@@ -1,0 +1,43 @@
+<div class="device" name="${imei}">
+<table class="params">
+    <tr>
+        <td name ="date">
+            <p><nobr class="data-date" >${date}</nobr></p>
+            <p><nobr class="data-time">${time}</nobr></p>
+        </td>
+        <td name = "speed">
+            <p> <span class = "satellite">${sputnik}</span> <span class = "power"> ${zaryad}</span> </p>
+          <nobr> <span class="speed"> ${speed} </span> <span>km/h</span>  </nobr>
+        </td>
+
+        <td name = "active">
+            <div name="${active}"></div>
+			<div class="after"><nobr></nobr></div>
+        </td>
+    </tr>
+
+</table>
+
+    <table class="follow-me">
+        <tr>
+            <td class="name-user">
+               <p class="nn">
+                ${name}
+                </p>
+                <p class="phone">
+                    ${phone}
+                </p>
+            </td>
+            <td class="follow-track">
+                <div class="follow">
+                </div>
+                <div class="track-on">
+                </div>
+
+            </td>
+        </tr>
+    </table>
+    <div style="clear: both;"></div>
+
+
+</div>

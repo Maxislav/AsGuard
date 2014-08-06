@@ -1,0 +1,37 @@
+10
+
+dir
+127
+https://atlasphp.googlecode.com/svn/trunk/lib
+https://atlasphp.googlecode.com/svn
+
+
+
+2014-05-19T12:01:34.147034Z
+105
+Maximmalyshyn@gmail.com
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+3cf63c1f-f087-0774-b937-6e8d82d5fbf0
+
+jquery
+dir
+
+lodash
+dir
+
+requirejs
+dir
+

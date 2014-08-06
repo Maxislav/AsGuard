@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/proto/xmlrpc
+END
+DigestAuthentication.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/proto/xmlrpc/DigestAuthentication.java
+END
+XmlRpcMethodCaller.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/proto/xmlrpc/XmlRpcMethodCaller.java
+END
+AuthenticatedXmlRpcMethodCaller.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/proto/xmlrpc/AuthenticatedXmlRpcMethodCaller.java
+END
+XmlRpcClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/proto/xmlrpc/XmlRpcClient.java
+END
+InternalXmlRpcMethodCaller.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/com/mysql/fabric/proto/xmlrpc/InternalXmlRpcMethodCaller.java
+END

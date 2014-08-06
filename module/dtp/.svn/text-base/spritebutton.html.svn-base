@@ -1,0 +1,12 @@
+<div class="text-center spite-button sprite-add bg-white">
+    <div class="button2 ok">
+        Готово
+    </div>
+
+    <div class="button2 del">
+        Очистить
+    </div>
+    <div class="button2 no" style="width: 25px">
+        &#8593;
+    </div>
+</div>

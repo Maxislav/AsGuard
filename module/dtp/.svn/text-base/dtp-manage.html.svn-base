@@ -1,0 +1,222 @@
+<table class="sprite-dtp-manage">
+<tr>
+    <td>
+       Координаты:
+    </td>
+    <td>
+        <input type="text" name = "lat"style="width: 60px" value="${lat}"><input name="lng" type="text"style="width: 60px; margin-left: 5px"value="${lng}">
+        <div class="button2 text-center" name="setMap"style="float: right; margin-top: -3px; padding: 2px">
+            Определить
+        </div>
+    </td>
+</tr>
+<tr>
+    <td>
+        Дата и время:
+    </td>
+    <td>
+        <input type="text" name="datetime">
+    </td>
+</tr>
+<tr>
+    <td>
+        Адрес:
+    </td>
+    <td>
+        <input type="text" name="address" {{if (address)}}value="${address}"{{/if}}  >
+    </td>
+</tr>
+<tr>
+    <td>
+        <nobr>Краткое описание:</nobr>
+    </td>
+    <td>
+        <textarea rows="5">{{if (comment)}}${comment}{{/if}}</textarea>
+    </td>
+</tr>
+<tr>
+    <td>
+        Кто выехал:
+    </td>
+    <td>
+        <input type="text" name="accept" {{if (accept)}}value="${accept}"{{/if}}>
+    </td>
+</tr>
+<tr>
+    <td>
+        Время прибытия:
+    </td>
+    <td>
+        <input type="text" name="remotetime"><div class="rt" name="rtime-mi"></div>:<div  class="rt"  name="rtime-ss"></div>
+    </td>
+
+<tr class="typeEvent">
+    <td>
+        Проишествие:
+    </td>
+    <td class="radio">
+        <div>
+            <div>
+                Авария
+            </div>
+            <div>
+                <input name="t" t="dtp" {{if (typeEvent == "dtp") }} checked{{/if}}  type="radio">
+            </div>
+
+        </div>
+        <div>
+            <div>
+                Тех выезд
+            </div>
+            <div>
+                <input name="t" t = "malfunction" {{if (typeEvent == "malfunction") }} checked{{/if}}  type="radio">
+            </div>
+
+        </div>
+        <div>
+            <div>
+                Угон
+            </div>
+            <div>
+                <input name="t" t="away"  {{if (typeEvent == "away") }} checked{{/if}} type="radio">
+            </div>
+
+        </div>
+        <div>
+            <div>
+                Подозр на угон
+            </div>
+            <div>
+                <input name="t" t="saway" {{if (typeEvent == "saway") }} checked{{/if}} type="radio">
+            </div>
+
+        </div>
+        <div>
+            <div>
+                Хулиганство
+            </div>
+            <div>
+                <input name="t" t="mugging"  {{if (typeEvent == "mugging") }} checked{{/if}} type="radio">
+            </div>
+
+        </div>
+    </td>
+</tr>
+<tr class="hurt">
+    <td>
+        Пострадавшие:
+    </td>
+    <td class="radio">
+        <div>
+            <div>
+                Нет
+            </div>
+            <div>
+                <input name="p" p="1"  {{if (hurt == "1") }} checked{{/if}} type="radio">
+            </div>
+
+        </div>
+        <div>
+            <div>
+                Легкие
+            </div>
+            <div>
+                <input name="p" p="2" {{if (hurt == "2") }} checked{{/if}} type="radio">
+            </div>
+
+        </div>
+        <div>
+            <div>
+                Средние
+            </div>
+            <div>
+                <input name="p" p="3" {{if (hurt == "3") }} checked{{/if}}  type="radio">
+            </div>
+
+        </div>
+        <div>
+            <div>
+                Тяжелые
+            </div>
+            <div>
+                <input name="p"  p="4" {{if (hurt == "4") }} checked{{/if}}  type="radio">
+            </div>
+
+        </div>
+        <div>
+            <div>
+                200
+            </div>
+            <div>
+                <input name="p"  p="5" {{if (hurt == "5") }} checked{{/if}}  type="radio">
+            </div>
+
+        </div>
+    </td>
+</tr>
+<tr >
+    <td>
+        На месте:
+    </td>
+    <td class="gai">
+        <div>
+            <div style="float: left" >
+                ГАИ:
+            </div>
+            <input type="checkbox" name="gai" {{if (gai == "1") }} checked{{/if}}>
+        </div>
+        <div>
+            <div style="float: left">
+                Скорая:
+            </div>
+            <input type="checkbox" name="ambulance" {{if (ambulance == "1") }} checked{{/if}}>
+        </div>
+        <div>
+            <div style="float: left">
+                MH:
+            </div>
+            <input type="checkbox" name="mh" {{if (mh == "1") }} checked{{/if}}>
+        </div>
+
+    </td>
+</tr>
+<tr>
+    <td>
+        Рассылка:
+    </td>
+    <td class="gai">
+
+        <div>
+            <div style="float: left">
+                Репост:
+            </div>
+            <input type="checkbox"  name="repost" {{if (!id)}}checked{{/if}}> {{if (repost =="1" && id)}}<div class="y"></div>{{/if}}
+        </div>
+        <div>
+            <div style="float: left">
+                Email:
+            </div>
+            <input type="checkbox" name="email"  {{if (!id)}}checked {{/if}}>{{if (mail =="1" && id)}}<div class="y"></div>{{/if}}
+        </div>
+        <div>
+            <div style="float: left">
+                SMS:
+            </div>
+            <input type="checkbox" name="sms" {{if (!id)}}checked{{/if}} >{{if (sms =="1" && id)}}<div class="y"></div>{{/if}}
+        </div>
+
+    </td>
+</tr>
+</table>
+<div class="text-center spite-button">
+    <div class="button2" name = "save">
+        Отправить
+    </div>
+    <div class="button2" name="cancel">
+        Отмена
+    </div>
+</div>
+
+
+
+

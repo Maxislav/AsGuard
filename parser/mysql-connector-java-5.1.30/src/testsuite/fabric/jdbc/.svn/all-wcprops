@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/testsuite/fabric/jdbc
+END
+TestHABasics.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/testsuite/fabric/jdbc/TestHABasics.java
+END
+TestFabricMySQLConnectionSharding.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/testsuite/fabric/jdbc/TestFabricMySQLConnectionSharding.java
+END
+TestBasicConnection.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/testsuite/fabric/jdbc/TestBasicConnection.java
+END
+TestHashSharding.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/52/trunk/parser/mysql-connector-java-5.1.30/src/testsuite/fabric/jdbc/TestHashSharding.java
+END

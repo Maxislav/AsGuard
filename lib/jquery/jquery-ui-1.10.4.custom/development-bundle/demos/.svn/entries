@@ -1,0 +1,154 @@
+10
+
+dir
+127
+https://atlasphp.googlecode.com/svn/trunk/lib/jquery/jquery-ui-1.10.4.custom/development-bundle/demos
+https://atlasphp.googlecode.com/svn
+
+
+
+2014-05-19T09:53:05.934757Z
+104
+Maximmalyshyn@gmail.com
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+3cf63c1f-f087-0774-b937-6e8d82d5fbf0
+
+
+
+
+
+
+0
+
+addClass
+dir
+
+animate
+dir
+
+autocomplete
+dir
+
+datepicker
+dir
+
+demos.css
+file
+
+
+
+
+2014-05-18T22:40:08.000000Z
+c7fc917de57fba6b610ad6191fc1a28a
+2014-05-19T09:53:05.934757Z
+104
+Maximmalyshyn@gmail.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+287
+
+draggable
+dir
+
+effect
+dir
+
+hide
+dir
+
+images
+dir
+
+index.html
+file
+
+
+
+
+2014-05-18T22:40:08.000000Z
+65b28a6b781922058ea85ba3676b5299
+2014-05-19T09:53:05.934757Z
+104
+Maximmalyshyn@gmail.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+818
+
+menu
+dir
+
+position
+dir
+
+removeClass
+dir
+
+show
+dir
+
+slider
+dir
+
+switchClass
+dir
+
+toggle
+dir
+
+toggleClass
+dir
+
+widget
+dir
+
