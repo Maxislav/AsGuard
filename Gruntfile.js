@@ -59,13 +59,14 @@ module.exports = function (grunt) {
 					]
 				}
 			},
-			insruction: {
+			instruction: {
 				options: {
 					compress: true,
 					yuicompress: true
 				},
 				files: {
 					"build/instruction.css": [
+						"css/animation.css",
 						"css/instruction.less"
 					]
 				}
@@ -110,7 +111,7 @@ module.exports = function (grunt) {
 				files: [
 					"css/instruction.less"
 				],
-				tasks: ['less:insruction'],
+				tasks: ['less:instruction'],
 				options: {
 					nospawn: true
 				}
@@ -126,6 +127,6 @@ module.exports = function (grunt) {
 	//grunt.loadNpmTasks('grunt-yui-compressor');
 
 	// Задача по умолчанию
-	grunt.registerTask('default', ['concat', 'uglify', 'less', 'less:insruction', 'watch']);
+	grunt.registerTask('default', ['concat', 'uglify', 'less', 'less:instruction', 'watch']);
 
 };
