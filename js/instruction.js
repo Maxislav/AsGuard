@@ -13,6 +13,10 @@ phonecatApp.config(['$routeProvider',
                 templateUrl: 'partials/instruction/home.html',
                 controller: 'home'
             }).
+            when('/adddevice', {
+                templateUrl: 'partials/instruction/adddevice.html',
+                controller: 'adddevice'
+            }).
             when('/gpslogger', {
                 templateUrl: 'partials/instruction/gpslogger.html',
                 controller: 'gpslogger'
@@ -42,6 +46,10 @@ navControllers.controller('gpslogger', function ($scope, $http, $routeParams, $r
 
 navControllers.controller('okoavto', function ($scope, $http, $routeParams, $rootScope) {
     $scope.activEl('#okoavto', $scope)
+})
+
+navControllers.controller('adddevice', function ($scope, $http, $routeParams, $rootScope) {
+    $scope.activEl('#adddevice', $scope)
 })
 
 

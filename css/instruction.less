@@ -50,7 +50,7 @@ html {
 }
 
 .view-container{
-  margin-left: 300px;
+  margin-left: 310px;
   .view-frame{
     width: 100%;
   }
@@ -58,10 +58,13 @@ html {
 
 .intstruction{
   width: 1000px;
-  min-height: 300px;
+  min-height: 500px;
   margin: 0 auto;
   background: #ffffff;
   z-index: 2;
+  border-radius: 5px;
+  border: 2px inset beige;
+  box-shadow: 0px 0px 10px #FFF;
  // position: absolute;
 
 
@@ -75,39 +78,119 @@ html {
     vertical-align: middle;
   }
   .nav-panel{
-   width: 285px;
+   width: 300px;
+    &>div{
+      padding: 10px;
+    }
+    li{
+      line-height: 0;
+      list-style-type: none;
+    }
+
     .sprite-text{
-      background: #cdeaff;
+      //background: #cdeaff;
+      background: -moz-linear-gradient(left,  rgba(206,220,231,0) 0%, rgba(210,226,233,1) 27%, rgba(220,242,240,1) 100%); /* FF3.6+ */
+      background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(206,220,231,0)), color-stop(27%,rgba(210,226,233,1)), color-stop(100%,rgba(220,242,240,1))); /* Chrome,Safari4+ */
+      background: -webkit-linear-gradient(left,  rgba(206,220,231,0) 0%,rgba(210,226,233,1) 27%,rgba(220,242,240,1) 100%); /* Chrome10+,Safari5.1+ */
+      background: -o-linear-gradient(left,  rgba(206,220,231,0) 0%,rgba(210,226,233,1) 27%,rgba(220,242,240,1) 100%); /* Opera 11.10+ */
+      background: -ms-linear-gradient(left,  rgba(206,220,231,0) 0%,rgba(210,226,233,1) 27%,rgba(220,242,240,1) 100%); /* IE10+ */
+      background: linear-gradient(to right,  rgba(206,220,231,0) 0%,rgba(210,226,233,1) 27%,rgba(220,242,240,1) 100%); /* W3C */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00cedce7', endColorstr='#dcf2f0',GradientType=1 ); /* IE6-9 */
+
     }
     .text{
 
-      width: 200px;
+      width: 240px;
+      text-align: right;
+      padding-right: 20px;
     }
     a{
-
-
-      width: 200px;
+      .table{
+        height: 20px;
+      }
+      width: 240px;
       text-align: center;
       display: block;
       margin: 5px;
       color: #000000;
-
+      .sprite-text{
+        height: 40px;
+        font-style: italic;
+        border-radius: 5px;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.6);
+        &:active{
+          box-shadow: 0 2px 2px rgba(0,0,0,0.6);
+        }
+      }
       .arrow{
+        display: none;
         height: 0;
         border: 20px solid transparent;
-        border-left-color: #cdeaff;
+        border-left-color: #596A72;
         border-right: 0;
         width: 0;
 
       }
+      &.select{
+        .arrow{
+          display: block;
+        }
+        .sprite-text{
+          color: #eaeaea;
+          text-shadow: 0 1px 0 #fff, -1px -1px 0 #474040;
+
+          border-radius: 5px 0 0 5px;
+
+          background: -moz-linear-gradient(left,  rgba(206,220,231,0) 0%, rgba(174,189,199,1) 27%, rgba(89,106,114,1) 100%); /* FF3.6+ */
+          background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(206,220,231,0)), color-stop(27%,rgba(174,189,199,1)), color-stop(100%,rgba(89,106,114,1))); /* Chrome,Safari4+ */
+          background: -webkit-linear-gradient(left,  rgba(206,220,231,0) 0%,rgba(174,189,199,1) 27%,rgba(89,106,114,1) 100%); /* Chrome10+,Safari5.1+ */
+          background: -o-linear-gradient(left,  rgba(206,220,231,0) 0%,rgba(174,189,199,1) 27%,rgba(89,106,114,1) 100%); /* Opera 11.10+ */
+          background: -ms-linear-gradient(left,  rgba(206,220,231,0) 0%,rgba(174,189,199,1) 27%,rgba(89,106,114,1) 100%); /* IE10+ */
+          background: linear-gradient(to right,  rgba(206,220,231,0) 0%,rgba(174,189,199,1) 27%,rgba(89,106,114,1) 100%); /* W3C */
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00cedce7', endColorstr='#596a72',GradientType=1 ); /* IE6-9 */
+
+        }
+      }
+
+    }
+    .subgect{
+      margin-top: 20px;
+      font-weight: bold;
     }
   }
   .float-left{
     float: left;
+    border-right: 1px solid darkgray;
   }
   a{
     cursor: pointer;
     text-decoration: none;
   }
 
+}
+
+.view-frame{
+  .content{
+    text-indent: 40px;
+    padding: 10px;
+    h2, h4{
+      margin: 20px 0 10px 0;
+    }
+
+    ol, li{
+      text-indent: 0;
+      margin-left: 40px;
+      p{
+        text-indent: 0;
+      }
+    }
+    li{
+      margin-left: 10px;
+      text-indent: 0;
+      list-style-type: disc;
+      li{
+        margin-left: 20px;
+      }
+    }
+  }
 }

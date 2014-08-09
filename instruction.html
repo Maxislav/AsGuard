@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app ='phonecatApp'>
+<html lang="en" ng-app='phonecatApp'>
 <head>
     <link rel="shortcut icon" href="images/icon.png" rel="shortcut icon" href="images/icon.png"/>
     <title>Atlas</title>
@@ -8,15 +8,12 @@
     <link rel="stylesheet" href="build/instruction.css"/>
 
 
-
     <script src="lib/angular/angular.min.js"></script>
     <script src="lib/angular/angular-route.min.js"></script>
     <script src="lib/angular/angular-animate.js"></script>
     <script src="lib/angular/angular-sanitize.js"></script>
     <script src="js/instruction.js"></script>
     <script src="js/rain.js" type="text/javascript">//спеэфект "дождь"</script>
-
-
 
 
 </head>
@@ -31,39 +28,90 @@
 
 <div class="intstruction" ng-controller="nav">
 
-    <div >
-        <div class="float-left nav-panel" >
-            <div>
-                <a  h href="#home" >
-                    <div class="table">
-                        <div class="table-cell sprite-text ">
-                           <div class="text">
-                               Основные сведения
-                           </div>
-                        </div>
-                        <div class="table-cell">
-                            <div class="arrow">
+    <div>
+        <div class="float-left nav-panel">
 
+            <div>
+
+                <div class="subgect">
+                    Справка
+                </div>
+                <div>
+                    <a h href="#home">
+                        <div class="table">
+                            <div class="table-cell sprite-text ">
+                                <div class="text">
+                                    Регистрация
+                                </div>
+                            </div>
+                            <div class="table-cell">
+                                <div class="arrow">
+
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+
+                    <a h href="#adddevice">
+                        <div class="table">
+                            <div class="table-cell sprite-text ">
+                                <div class="text">
+                                    Добавление устройства
+                                </div>
+                            </div>
+                            <div class="table-cell">
+                                <div class="arrow">
+
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="subgect">
+                    Поддерживаемыe устройствa
+                </div>
+                <ul>
+                    <li>
+                        <a h href="#gpslogger">
+                            <div class="table">
+                                <div class="table-cell sprite-text ">
+                                    <div class="text">
+                                        GpsLogger For Android
+                                    </div>
+                                </div>
+                                <div class="table-cell">
+                                    <div class="arrow">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+
+                    </li>
+                    <li>
+                        <a h href="#okoavto">
+                            <div class="table">
+                                <div class="table-cell sprite-text ">
+                                    <div class="text">
+                                        Oko Avto
+                                    </div>
+                                </div>
+                                <div class="table-cell">
+                                    <div class="arrow">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+
+                    </li>
+                    <li>
+
+                    </li>
+                </ul>
             </div>
-
-
-          Поддерживаемыe устройствa
-
-            <ul>
-                <li>
-                    <a h href="#gpslogger" >GpsLogger For Android</a>
-                </li>
-                <li>
-                    <a h href="#okoavto" >Oko Avto</a>
-                </li>
-                <li>
-
-                </li>
-            </ul>
         </div>
 
         <div class=" view-container">
@@ -72,9 +120,6 @@
 
 
     </div>
-
-
-
 
 
 </div>
