@@ -50,7 +50,7 @@ html {
 }
 
 .view-container{
-
+  margin-left: 300px;
   .view-frame{
     width: 100%;
   }
@@ -63,9 +63,7 @@ html {
   background: #ffffff;
   z-index: 2;
  // position: absolute;
-  &>div{
-    padding: 20px;
-  }
+
 
   .table{
     display: table;
@@ -74,12 +72,31 @@ html {
   }
   .nav-panel{
    width: 285px;
+    a{
+      padding: 5px 10px;
+      background-color: #c1bffa;
+      width: 200px;
+      text-align: center;
+      display: block;
+      margin: 5px;
+      color: #000000;
+
+      .arrow{
+        height: 0;
+        border: 40px solid transparent;
+        border-left-color: #690000;
+        border-right: 0;
+        width: 0;
+
+      }
+    }
   }
-  .table-cell{
-    display: table-cell;
+  .float-left{
+    float: left;
   }
   a{
     cursor: pointer;
+    text-decoration: none;
   }
 
 }

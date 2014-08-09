@@ -29,18 +29,30 @@
     Ваш браузер не поддерживает Canvas.
 </canvas>
 
-<div class="intstruction">
+<div class="intstruction" ng-controller="nav">
 
-    <div class="table">
-        <div class="table-cell nav-panel">
-            Исписок поддерживаемых устройств
+    <div class="table" >
+        <div class="float-left nav-panel" >
+            <div>
+                <a  h href="#home" >
+                    <div>
+                        Основные сведения
+                    </div>
+                    <div class="arrow">
+
+                    </div>
+                </a>
+            </div>
+
+
+          Поддерживаемыe устройствa
 
             <ul>
                 <li>
-                    <a href="#gpslogger" >GpsLogger For Android</a>
+                    <a h href="#gpslogger" >GpsLogger For Android</a>
                 </li>
                 <li>
-                    <a href="#okoavto" >Oko Avto</a>
+                    <a h href="#okoavto" >Oko Avto</a>
                 </li>
                 <li>
 
@@ -48,7 +60,7 @@
             </ul>
         </div>
 
-        <div class="table-cell view-container">
+        <div class=" view-container">
             <div ng-view class="view-frame"></div>
         </div>
 
