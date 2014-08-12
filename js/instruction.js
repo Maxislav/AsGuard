@@ -25,6 +25,10 @@ phonecatApp.config(['$routeProvider',
                 templateUrl: 'partials/instruction/okoavto.html',
                 controller: 'okoavto'
             }).
+        when('/gpsmarker', {
+            templateUrl: 'partials/instruction/gpsmarker.html',
+            controller: 'gpsmarker'
+        }).
             otherwise({
                 redirectTo: '/home'
             });
@@ -50,6 +54,11 @@ navControllers.controller('okoavto', function ($scope, $http, $routeParams, $roo
 
 navControllers.controller('adddevice', function ($scope, $http, $routeParams, $rootScope) {
     $scope.activEl('#adddevice', $scope)
+})
+
+
+navControllers.controller('gpsmarker', function ($scope, $http, $routeParams, $rootScope) {
+    $scope.activEl('#gpsmarker', $scope)
 })
 
 

@@ -4,6 +4,18 @@ $c_user =   $_COOKIE['user'];
 $c_key =   $_COOKIE['key'];
 
 
+$c_user = security($c_user);
+$c_key = security($c_key);
+function security($val){
+    $val = str_replace("`", "", $val);
+    $val = str_replace("'", "", $val);
+    $val = str_replace("\"", "", $val);
+    $val = str_replace("\r\n", '', $val);
+    $val = str_replace("\n", '', $val);
+    return $val;
+}
+
+
 
 if($c_user!='' && $c_key!=''){
 
@@ -39,8 +51,13 @@ if($c_user!='' && $c_key!=''){
            setcookie('key', 'null');
             mysql_close($db);
            echo 'Wrong pass';
+
             $location = getRoot( $_SERVER['REQUEST_URI']);
-            header("Location: /".$location);
+
+            //echo  $location;
+            //header("Location: /".$location);
+            header("Location: /");
+
         }
     }else{
         setcookie('key', 'null');
