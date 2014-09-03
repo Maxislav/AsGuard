@@ -7,12 +7,21 @@ var report = {
 	init:function (html) {
 		var scope = this;
 		if (!this.el) {
-			this.from= null
+			this.from= null;
 			this.to=null;
 
 			$('body').append(html);
+
 			this.el = $('.report');
-			this.el.css('display', 'inline');
+			this.el.css('display', 'block');
+			require([
+				'lib/jquery/dateFormat'
+			], function(){
+				scope.el.find('#forma_from').val($.format.date(new Date(), 'dd-MM-yyyy'));
+				scope.el.find('#forma_to').val($.format.date(new Date(), 'dd-MM-yyyy'))
+			})
+
+
 			this.el.fadeTo(100, 1);
 			this.el.find('.cancel').click(function () {
 				scope.vhide();
@@ -49,7 +58,7 @@ var report = {
 				console.log(data);
 				if (data) {
 					data
-						options['filter'] = (t ? 'true': 'false');
+					options['filter'] = (t ? 'true': 'false');
 				} else {
 
 				}
@@ -128,7 +137,7 @@ var report = {
 			}
 
 
-		//	scope.filter(points[selectUserImei].arrPointTrack);
+			//	scope.filter(points[selectUserImei].arrPointTrack);
 			points[selectUserImei].markerTrack;
 			var marker_tr = [], lat, lng, latLng = [];
 			var polyArr = [];
@@ -160,7 +169,7 @@ var report = {
 			)
 			points[selectUserImei].polylineTrack = L.polyline(polyArr, {color:'#0024ff', weight:'2', opacity:"0.9"}).addTo(map);
 			require([
-				'js/leaflet.polylineDecorator.js'
+				'js/leaflet.polylineDecorator'
 			],
 				function () {
 					points[selectUserImei].polyDecorator = L.polylineDecorator(points[selectUserImei].polylineTrack, {
@@ -203,11 +212,11 @@ var report = {
 			var date = app.parseTime.decode(data.split(',')[3]).date;
 			var time = app.parseTime.decode(data.split(',')[3]).time;
 			var speed = data.split(',')[4];
-            var sputnik = data.split(',')[5];
-            var zaryzd  = data.split(',')[6];
+			var sputnik = data.split(',')[5];
+			var zaryzd  = data.split(',')[6];
 			return 'Дата: ' + date + '</br>' + 'Время: ' + time + '</br>' + 'Скорость: ' + speed + ' km/h' +'</br>'+
-                'Спутников: ' + (sputnik=="-1"?"б/с":sputnik)  + '</br>' +
-                'Заряд : ' + zaryzd + ' V</br>';
+				'Спутников: ' + (sputnik=="-1"?"б/с":sputnik)  + '</br>' +
+				'Заряд : ' + zaryzd + ' V</br>';
 		}
 
 
@@ -263,7 +272,7 @@ var report = {
 				$('.report .vmax').html(data);
 				s.vmax = data;
 				if(gspeed){
-				//	gspeed.arrPoints =	points[imei].arrPointTrack
+					//	gspeed.arrPoints =	points[imei].arrPointTrack
 					gspeed.vmax = data;
 					gspeed.from =fromPeriod;
 					gspeed.to=toPeriod;
@@ -293,30 +302,30 @@ var report = {
 			var suspect = [], musor = [];
 			for (var i = 1; i < (latLng.length - 3); i++) {
 				var d1 = 0, d2 = 0;
-					d1 = scope.distance([
-						{
-							lat:latLng[i].lat,
-							lng:latLng[i].lng
-						},
-						{
-							lat:latLng[i + 1].lat,
-							lng:latLng[i + 1].lng
-						}
-					]);
-					d2 = scope.distance([
-						{
-							lat:latLng[i].lat,
-							lng:latLng[i].lng
-						},
-						{
-							lat:latLng[i + 2].lat,
-							lng:latLng[i + 2].lng
-						}
-					]);
-					if (d2 < d1) {
-						suspect[i+2] = true;
-						count++;
+				d1 = scope.distance([
+					{
+						lat:latLng[i].lat,
+						lng:latLng[i].lng
+					},
+					{
+						lat:latLng[i + 1].lat,
+						lng:latLng[i + 1].lng
 					}
+				]);
+				d2 = scope.distance([
+					{
+						lat:latLng[i].lat,
+						lng:latLng[i].lng
+					},
+					{
+						lat:latLng[i + 2].lat,
+						lng:latLng[i + 2].lng
+					}
+				]);
+				if (d2 < d1) {
+					suspect[i+2] = true;
+					count++;
+				}
 
 			}
 			var filterPoints = [];
