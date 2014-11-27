@@ -21535,7 +21535,7 @@ var set = {
 
 		//var baseLayers =  {'OSM':osm, 'Google':ggl, 'Google sat':gglsats, 'Yandex': yan  } ;
 
-		var layer =  {'OSM':'osm', 'Google':'ggl', 'Google sat':'gglsats', 'Yandex': 'yan'    } ;
+		var layer =  {'OSM':'osm', 'Google':'ggl', 'Google sat':'gglsats', 'Yandex': 'yan', 'Mapia' : 'mapia'    } ;
 		$.ajax({
 			type:'POST',
 			url:'php/setoptions.php',

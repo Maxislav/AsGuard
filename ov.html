@@ -748,7 +748,18 @@
 
        return tilePoint.multiplyBy(tileSize).subtract(origin);
    };
+       L.Util.template = function (str, data) {
+           return str.replace(/\{ *([\w_]+) *\}/g, function (str, key) {
+               var value = data[key];
+               if (!data.hasOwnProperty(key)) {
+                   throw new Error('No value provided for variable ' + str);
+               } else if (typeof value === 'function') {
+                   value = value(data);
+               }
 
+               return value;
+           });
+       }
 
 
        var map = new L.Map('map', {center: new L.LatLng(
@@ -761,12 +772,22 @@
 
        var ggl =new L.TileLayer('http://mt0.googleapis.com/vt/lyrs=m@207000000&hl=ru&src=api&x={x}&y={y}&z={z}&s=Galile',{maxZoom: 18,minZoom:3});
        var  gglsats = new L.TileLayer('https://khms1.google.com/kh/v=142&src=app&x={x}&s=&y={y}&z={z}&s=Gali', {maxZoom:18, minZoom:3});
-
        var yan = new L.TileLayer('http://{s}.maps.yandex.net/tiles?l=map&v=2.31.1&x={x}&s=&y={y}&z={z}&lang=ru-RU',
                {attribution: 'Data, imagery and map information provided by <a href="http://maps.yandex.ru" target="_blank">Yandex</a>',
                    subdomains: ['vec01','vec02','vec03','vec04'],
                    maxZoom: 17, crs: L.CRS.EPSG3395,
                    zIndex: 5});
+
+       var mapia = new L.tileLayer('http://{s}{hash}.wikimapia.org/?x={x}&y={y}&zoom={z}&r=7071412&type=&lng=1', {
+           // Fix L.Util.template to use this
+           hash: function (data) {
+               return data.x % 4 + (data.y % 4) *4;
+           }
+           , subdomains : 'i'
+           , maxZoom: 18
+           , attribution: '<a href="http://wikimapia.org" target="_blank">Wikimapia.org</a>'
+       })
+
 
 
 
@@ -776,7 +797,7 @@
      //  map.addControl(new L.Control.Layers( {'OSM':osm, 'Google':ggl, 'Google sat':gglsats , "Yandex":yndx   }, {"Пробки":ytraffic} ));
   // map.addControl(new L.Control.Layers( {'OSM':osm, 'Google':ggl, 'Google sat':gglsats    }  ));
 
-   var baseLayers =  {'OSM':osm, 'Google':ggl, 'Google sat':gglsats, 'Yandex': yan  } ;
+   var baseLayers =  {'OSM':osm, 'Google':ggl, 'Google sat':gglsats, 'Yandex': yan, 'Mapia' : mapia  } ;
 
 
    var GoogleTrafficLayer = new L.TileLayer('http://{s}.google.com/vt?hl=ru&src=app&lyrs=m@177000000,traffic|seconds_into_week:-1&x={x}&s=&y={y}&z={z}&style=15',
