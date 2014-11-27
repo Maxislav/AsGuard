@@ -1,6 +1,6 @@
 {
-	"root":"atlas",
+	"root":"root",
 	"url":"localhost",
-	"table":"atlas",
-	"pass":"astalavista"
+	"table":"monitoring",
+	"pass":"gliderman"
 }
